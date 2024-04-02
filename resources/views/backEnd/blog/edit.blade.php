@@ -52,18 +52,15 @@
                             <div class="col-lg-4">
                                 <div class="mb-4">
                                     <label for="exampleInputPassword1" class="form-label fw-semibold">Category</label>
-                                    @php
-                                        $categories = \App\Models\Category::latest()->get();
-                                        $selectedCategories = json_decode($blog->category_id);
-                                    @endphp
 
-                                    <select name="category_id[]" id="category_id" class="form-control" multiple>
+                                    <select name="category_id" id="category_id" class="form-control">
                                         @foreach($categories as $row)
-                                            <option value="{{ $row->id }}" @if(in_array($row->id, $selectedCategories)) selected @endif>{{ $row->name }}</option>
+                                            <option value="{{ $row->id }}" @if($row->id == $blog->category_id) selected @endif>{{ $row->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
                             </div>
+
 
 
                             <div class="col-lg-12">
@@ -103,6 +100,16 @@
                                     <select name="status" id="" class="form-select">
                                         <option value="1" @if($blog->status == 1) selected @endif >Publish</option>
                                         <option value="2" @if($blog->status == 2) selected @endif >Draft/Unpublished</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="mb-4">
+                                    <label for="Featured" class="form-label fw-semibold">Is Featured</label>
+                                    <select name="position" id="Featured" class="form-select" required="">
+                                        <option value="1" @if($blog->position == 1) selected @endif>Latest Blog</option>
+                                        <option value="0" @if($blog->position == 0) selected @endif>Slider Blog</option>
+                                        <option value="2" @if($blog->position == 2) selected @endif>Editorial Picks</option>
                                     </select>
                                 </div>
                             </div>

@@ -52,6 +52,7 @@
                                         <th>Name</th>
                                         <th>Description</th>
                                         <th>Status</th>
+                                        <th>position</th>
                                         <th>Action</th>
                                     </tr>
                                     <!-- end row -->
@@ -63,23 +64,7 @@
                                         <td>{{$loop->iteration}}</td>
                                         <td><img src="{{asset($row->image)}}" alt="" class="img-fluid"></td>
                                         <td>
-                                            @php
-                                                $categoryIds = json_decode($row->category_id, true);
-                                            @endphp
-
-                                            @if(is_array($categoryIds))
-                                                @foreach($categoryIds as $categoryId)
-                                                    @php
-                                                        $category = \App\Models\Category::find($categoryId);
-                                                    @endphp
-
-                                                    @if($category)
-                                                        <span class="badge bg-info">{{ $category->name }}</span>
-
-                                                    @endif
-                                                @endforeach
-                                            @else
-                                            @endif
+                                            {{ $row->category->name }}
                                         </td>
                                         <td>{{$row->name}}</td>
                                         <td>{{\Illuminate\Support\Str::limit($row->description,20)}}</td>
@@ -88,6 +73,15 @@
                                                 <span class="badge bg-secondary">Active</span>
                                             @elseif($row->status == 2)
                                                 <span class="badge bg-danger">Inactive</span>
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if($row->position == 1)
+                                                <span class="badge bg-secondary">Latest Blog</span>
+                                            @elseif($row->position == 2)
+                                                <span class="badge bg-success">Editorial Pick</span>
+                                            @elseif($row->position == 0)
+                                                <span class="badge bg-success">Slider</span>
                                             @endif
                                         </td>
                                         <td>

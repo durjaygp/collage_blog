@@ -50,7 +50,7 @@
                          <div class="col-lg-6">
                              <div class="mb-4">
                                  <label for="exampleInputPassword1" class="form-label fw-semibold">Category Name</label>
-                                 <input type="text" name="name" class="form-control" id="exampleInputtext" placeholder="Book Name">
+                                 <input type="text" name="name" class="form-control" id="exampleInputtext" placeholder="Category Name">
                              </div>
                          </div>
                          <div class="col-lg-6">

@@ -19,8 +19,10 @@ return new class extends Migration
             $table->longText('main_content')->nullable();
             $table->longText('description')->nullable();
             $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users')->nullable();
-            $table->json('category_id')->nullable();
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->unsignedBigInteger('category_id');
+            $table->foreign('category_id')->references('id')->on('categories');
+            //$table->json('category_id')->nullable();
             // content status
             $table->string('status')->nullable();
             $table->string('type')->nullable();

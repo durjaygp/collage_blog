@@ -26,8 +26,9 @@ class BlogController extends Controller
     }
 
     public function edit($id){
+        $categories = Category::whereStatus(1)->get();
         $blog = Blog::find($id);
-        return view('backEnd.blog.edit',compact('blog'));
+        return view('backEnd.blog.edit',compact('categories','blog'));
     }
 
     public function save(Request $request){
@@ -60,26 +61,23 @@ class BlogController extends Controller
             return redirect()->back()->withErrors($validator)->withInput();
         }
 
-       $categoryIdsJson = json_encode($request->category_id);
-
-        $recipe = new Blog();
-        $recipe->name = $request->name;
-        $recipe->slug = Str::slug($request->name, '-');
-        $recipe->user_id = auth()->user()->id;
-        $recipe->description = $request->description;
-        $recipe->category_id = $categoryIdsJson;
-        //$recipe->category_id = $request->category_id;
-        $recipe->main_content = $request->main_content;
-        $recipe->status = $request->status;
-        $recipe->position = $request->position;
-        $recipe->type = 'blog';
-        $recipe->seo_description = $request->seo_description;
-        $recipe->seo_tags = $request->seo_tags;
-        $recipe->seo_keywords = $request->seo_keywords;
+        $blog = new Blog();
+        $blog->name = $request->name;
+        $blog->slug = Str::slug($request->name, '-');
+        $blog->user_id = auth()->user()->id;
+        $blog->description = $request->description;
+        $blog->category_id = $request->category_id;
+        $blog->main_content = $request->content;
+        $blog->status = $request->status;
+        $blog->position = $request->position;
+        $blog->type = 'blog';
+        $blog->seo_description = $request->seo_description;
+        $blog->seo_tags = $request->seo_tags;
+        $blog->seo_keywords = $request->seo_keywords;
         if ($request->file('image')) {
-            $recipe->image = $this->saveImage($request);
+            $blog->image = $this->saveImage($request);
         }
-        $recipe->save();
+        $blog->save();
 
         return redirect()->route('blog.list')->with('success','Blog Created Successfully');
     }
@@ -133,15 +131,13 @@ class BlogController extends Controller
             return redirect()->back()->withErrors($validator)->withInput();
         }
 
-        $categoryIdsJson = json_encode($request->category_id);
         // If validation passes, update the student
         $blog = Blog::find($request->id);
         $blog->name = $request->name;
         $blog->slug = Str::slug($request->name, '-');
         $blog->user_id = auth()->user()->id;
         $blog->description = $request->description;
-        $blog->category_id = $categoryIdsJson; // Store category IDs as JSON
-       // $blog->category_id = json_encode($request->category_id); // Store category IDs as JSON
+        $blog->category_id = $request->category_id;
 
         $blog->main_content = $request->main_content;
         $blog->status = $request->status;
@@ -149,6 +145,7 @@ class BlogController extends Controller
         $blog->seo_description = $request->seo_description;
         $blog->seo_tags = $request->seo_tags;
         $blog->seo_keywords = $request->seo_keywords;
+        $blog->position = $request->position;
         $blog->type = 'blog';
         if ($request->file('image')) {
             if (file_exists($blog->image)) {

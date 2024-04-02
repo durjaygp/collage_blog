@@ -50,7 +50,7 @@
                         <div class="col-lg-6">
                             <div class="mb-4">
                                 <label for="exampleInputPassword1" class="form-label fw-semibold">Category Name</label>
-                                <input type="text" name="name" class="form-control" id="exampleInputtext" placeholder="Book Name" value="{{$category->name}}">
+                                <input type="text" name="name" class="form-control" id="exampleInputtext" placeholder="Category Name" value="{{$category->name}}">
                                 <input type="hidden" name="id" class="form-control"  value="{{$category->id}}">
                             </div>
                         </div>

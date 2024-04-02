@@ -54,7 +54,7 @@
                                     @php
                                         $categories = \App\Models\Category::latest()->get();
                                     @endphp
-                                    <select name="category_id[]" id="" class="form-control" multiple required>
+                                    <select name="category_id" id="" class="form-control" required>
                                         <option>Select Category</option>
                                         @foreach($categories as $row)
                                             <option value="{{$row->id}}" >{{$row->name}}</option>
@@ -64,29 +64,39 @@
                             </div>
                             <div class="col-lg-12">
                                 <div class="mb-4">
-                                    <label for="exampleInputPassword1" class="form-label fw-semibold">Short description</label>
-                                    <textarea name="description" id="editor" class="form-control" placeholder="Short description" required></textarea>
+                                    <label for="description" class="form-label fw-semibold">Short description</label>
+                                    <textarea name="description" id="description" class="form-control" placeholder="Short description" required></textarea>
                                 </div>
                             </div>
 
                             <div class="col-lg-12">
                                 <div class="mb-4">
-                                    <label for="exampleInputPassword1" class="form-label fw-semibold">Image</label>
-                                    <input type="file" name="image" class="form-control dropify" required>
+                                    <label for="Image" class="form-label fw-semibold">Image</label>
+                                    <input type="file" id="Image" name="image" class="form-control dropify" required>
                                 </div>
                             </div>
                             <div class="col-lg-12">
                                 <div class="mb-4">
-                                    <label for="exampleInputPassword1" class="form-label fw-semibold">Main Blog Content</label>
-                                    <textarea name="main_content" id="summernote" cols="30" rows="10" required></textarea>
+                                    <label for="" class="form-label fw-semibold">Main Blog Content</label>
+                                    <textarea name="content" id="summernote" cols="30" rows="10" required></textarea>
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="mb-4">
-                                    <label for="exampleInputPassword1" class="form-label fw-semibold">Status</label>
-                                    <select name="status" id="" class="form-select" required="">
+                                    <label for="Status" class="form-label fw-semibold">Status</label>
+                                    <select name="status" id="Status" class="form-select" required="">
                                         <option value="1">Publish</option>
                                         <option value="2">Draft/Unpublished</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="mb-4">
+                                    <label for="Featured" class="form-label fw-semibold">Is Featured</label>
+                                    <select name="position" id="Featured" class="form-select" required="">
+                                        <option value="1">Latest Blog</option>
+                                        <option value="0">Slider Blog</option>
+                                        <option value="2">Editorial Picks</option>
                                     </select>
                                 </div>
                             </div>

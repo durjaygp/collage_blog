@@ -18,13 +18,9 @@ use Illuminate\Http\Response; // Import the Response class
 class WebController extends Controller
 {
     public function index(){
-        $blogs = Blog::latest()->whereStatus(1)->limit(4)->get();
-
-        foreach ($blogs as $row) {
-            $wordCount = str_word_count(strip_tags($row->main_content)); // Assuming description contains the content of the blog post
-            $row->readingTime = ceil($wordCount / 200); // Assuming an average reading speed of 200 WPM
-        }
-        return view('frontEnd.home.index',compact('blogs'));
+        $slider = Blog::latest()->whereStatus(1)->wherePosition(0)->limit(4)->get();
+        $blogs = Blog::whereStatus(1)->latest()->limit(9)->wherePosition(1)->get();
+        return view('frontend.home.index',compact('slider','blogs'));
     }
 
 
