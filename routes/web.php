@@ -75,14 +75,6 @@ Route::middleware(['auth', 'isadmin'])->group(function(){
     Route::get('admin/category/edit/{id}',[AdminCategoryController::class,'edit'])->name('category.edit');
     Route::post('admin/category/update', [AdminCategoryController::class, 'update'])->name('category.update');
 
-    //========== Book Routes =================
-    Route::get('/admin/book/create',[AdminBookController::class,'create'])->name('book.create');
-    Route::get('/admin/book',[AdminBookController::class,'index'])->name('book.list');
-    Route::post('/admin/book/save',[AdminBookController::class,'save'])->name('book.save');
-    Route::get('admin/book/delete/{id}', [AdminBookController::class,'delete'])->name('book.delete');
-    Route::get('admin/book/edit/{id}',[AdminBookController::class,'edit'])->name('book.edit');
-    Route::post('admin/book/update', [AdminBookController::class, 'update'])->name('book.update');
-
     Route::get('/admin/comment-list',function (){
         return view('backEnd.admin.comments');
     })->name('comment.message');
@@ -96,19 +88,6 @@ Route::middleware(['auth', 'isadmin'])->group(function(){
     Route::get('admin/blog/edit/{id}',[BlogController::class,'edit'])->name('blog.edit');
     Route::post('admin/blog/update', [BlogController::class, 'update'])->name('blog.update');
 
-    //========== Recipe Routes =================
-    Route::get('/admin/recipe/create',[AdminRecipeController::class,'create'])->name('recipe.create');
-    Route::get('/admin/recipe',[AdminRecipeController::class,'index'])->name('recipe.list');
-    Route::post('/admin/recipe/save',[AdminRecipeController::class,'save'])->name('recipe.save');
-    Route::get('admin/recipe/delete/{id}', [AdminRecipeController::class,'delete'])->name('recipe.delete');
-    Route::get('admin/recipe/edit/{id}',[AdminRecipeController::class,'edit'])->name('recipe.edit');
-    Route::post('admin/recipe/update', [AdminRecipeController::class, 'update'])->name('recipe.update');
-
-    //========== Order List ================
-    Route::get('/admin/order',[AdminOrderController::class,'index'])->name('order.list');
-    Route::get('/admin/order/pending',[AdminOrderController::class,'pendingOrder'])->name('pendingOrder.list');
-    Route::get('/admin/order/delete/{id}',[AdminOrderController::class,'cartDelete'])->name('order.delete');
-    Route::get('/admin/order/approve/{id}',[AdminOrderController::class,'orderStatus'])->name('order.approve');
 
 
     // ============ Personal Update ==========
