@@ -102,223 +102,93 @@
                     <div id="primary" class="content-area">
                         <main id="main" class="site-main">
                             <div class="recent_posts_holder">
-                                <article class="box first_article">
-                                    <div class="top_box_content">
-                                        <div class="entry_cats">
-                                            <ul class="categories">
-                                                <li><a href="#">Lifestyle</a></li>
-                                            </ul>
+
+                                    <article class="box first_article">
+                                        <div class="top_box_content">
+                                            <div class="entry_cats">
+                                                <ul class="categories">
+                                                    <li><a href="#">{{$featuredBlog->category->name}}</a></li>
+                                                </ul>
+                                            </div>
+                                            <div class="post_title">
+                                                <h3><a href="#">{{$featuredBlog->name}}</a></h3>
+                                            </div>
+                                            <div class="meta">
+                                                <ul class="post_meta">
+                                                    <li class="posted_date"><a href="#">{{$featuredBlog->created_at}}</a></li>
+                                                </ul>
+                                            </div>
+                                            <!-- // post_meta -->
                                         </div>
-                                        <div class="post_title">
-                                            <h3><a href="#">Feeling special on valentines day</a></h3>
+                                        <!-- // top_box_content -->
+                                        <div class="post-thumb imghover">
+                                            <a href="#"><img src="{{asset($featuredBlog->image)}}" alt="..."></a>
                                         </div>
-                                        <div class="meta">
-                                            <ul class="post_meta">
-                                                <li class="posted_date"><a href="#">24 April 2018</a></li>
-                                            </ul>
-                                        </div>
-                                        <!-- // post_meta -->
-                                    </div>
-                                    <!-- // top_box_content -->
-                                    <div class="post-thumb imghover">
-                                        <a href="#"><img src="./assets/dist/img/posts/one/1.jpg" alt="..."></a>
-                                    </div>
-                                    <!-- // post-media -->
-                                    <div class="btm_box_content">
-                                        <div class="excerpt">
-                                            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est ...</p>
-                                        </div>
-                                        <!-- // excerpt -->
-                                        <div class="the_permalink">
-                                            <a href="#" class="btn_general">Continue Reading</a>
-                                        </div>
-                                        <!-- // the_permalink -->
-                                        <div class="extra">
-                                            <div class="row">
-                                                <div class="col">
-                                                    <div class="meta">
-                                                        <ul class="post_meta">
-                                                            <li class="posted_by"><span>By :</span><a href="#">Lia Adnres</a></li>
-                                                        </ul>
+                                        <!-- // post-media -->
+                                        <div class="btm_box_content">
+                                            <div class="excerpt">
+                                                <p>{{$featuredBlog->description}}</p>
+                                            </div>
+                                            <!-- // excerpt -->
+                                            <div class="the_permalink">
+                                                <a href="#" class="btn_general">Continue Reading</a>
+                                            </div>
+                                            <!-- // the_permalink -->
+                                            <div class="extra">
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <div class="meta">
+                                                            <ul class="post_meta">
+                                                                <li class="posted_by"><span>By :</span><a href="#">{{$featuredBlog->user->name}}</a></li>
+                                                            </ul>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div class="col">
-                                                    <div class="social_sharing">
-                                                        <ul class="social_icons_list">
-                                                            <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                                                            <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                                                            <li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
-                                                            <li><a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
-                                                            <li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
-                                                        </ul>
+                                                    <div class="col">
+                                                        <div class="social_sharing">
+                                                            <ul class="social_icons_list">
+                                                                <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                                                                <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                                                                <li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+                                                                <li><a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
+                                                                <li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+                                                            </ul>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
+                                            <!-- // extra -->
                                         </div>
-                                        <!-- // extra -->
-                                    </div>
-                                    <!-- // btm_box_content -->
-                                </article>
+                                        <!-- // btm_box_content -->
+                                    </article>
+
                                 <div class="vb_rp_grid_style vb_post_formates">
                                     <div class="row">
-                                        <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <div class="card">
-                                                <div class="post_media standard imghover">
-                                                    <a href="#"><img src="assets/dist/img/posts/one/2.jpg" alt="..."></a>
+                                        @foreach($remainingBlogs as  $row)
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                <div class="card">
+                                                    <div class="post_media standard imghover">
+                                                        <a href="#"><img src="{{asset($row->image)}}" alt="..."></a>
+                                                    </div>
+                                                    <!-- // post_media -->
+                                                    <div class="card_content">
+                                                        <div class="entry_cats">
+                                                            <ul class="categories">
+                                                                <li><a href="#">{{ $row->category->name }}</a></li>
+                                                            </ul>
+                                                        </div>
+                                                        <div class="post_title">
+                                                            <h3><a href="#">{{$row->name}}</a></h3>
+                                                        </div>
+                                                        <div class="excerpt">
+                                                            <p>{{\Illuminate\Support\Str::limit($row->description,154)}}</p>
+                                                        </div>
+                                                    </div>
+                                                    <!-- // card_content -->
                                                 </div>
-                                                <!-- // post_media -->
-                                                <div class="card_content">
-                                                    <div class="entry_cats">
-                                                        <ul class="categories">
-                                                            <li><a href="#">Fashion</a></li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="post_title">
-                                                        <h3><a href="#">Sun bath makes me more sexy day to day</a></h3>
-                                                    </div>
-                                                    <div class="excerpt">
-                                                        <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos ... </p>
-                                                    </div>
-                                                </div>
-                                                <!-- // card_content -->
+                                                <!-- // card -->
                                             </div>
-                                            <!-- // card -->
-                                        </div>
-                                        <!-- // col -->
-                                        <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <div class="card">
-                                                <div class="post_media standard imghover">
-                                                    <a href="#"><img src="assets/dist/img/posts/one/3.jpg" alt="..."></a>
-                                                </div>
-                                                <!-- // post_media -->
-                                                <div class="card_content">
-                                                    <div class="entry_cats">
-                                                        <ul class="categories">
-                                                            <li><a href="#">Travel</a></li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="post_title">
-                                                        <h3><a href="#">Trip to thailand was mind blowing</a></h3>
-                                                    </div>
-                                                    <div class="excerpt">
-                                                        <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos ... </p>
-                                                    </div>
-                                                </div>
-                                                <!-- // card_content -->
-                                            </div>
-                                            <!-- // card -->
-                                        </div>
-                                        <!-- // col -->
+                                        @endforeach
                                     </div>
-                                    <!-- // row -->
-                                    <div class="row">
-                                        <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <div class="card">
-                                                <div class="post_media standard imghover">
-                                                    <a href="#"><img src="assets/dist/img/posts/one/4.jpg" alt="..."></a>
-                                                    <div class="is_postformate">
-                                                        <a href="#"><i class="fa fa-video-camera" aria-hidden="true"></i></a>
-                                                    </div>
-                                                </div>
-                                                <!-- // post_media -->
-                                                <div class="card_content">
-                                                    <div class="entry_cats">
-                                                        <ul class="categories">
-                                                            <li><a href="#">Travel</a></li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="post_title">
-                                                        <h3><a href="#">Fishing at Greece was awesome</a></h3>
-                                                    </div>
-                                                    <div class="excerpt">
-                                                        <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos ... </p>
-                                                    </div>
-                                                </div>
-                                                <!-- // card_content -->
-                                            </div>
-                                            <!-- // card -->
-                                        </div>
-                                        <!-- // col -->
-                                        <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <div class="card">
-                                                <div class="post_media standard imghover">
-                                                    <a href="#"><img src="assets/dist/img/posts/one/5.jpg" alt="..."></a>
-                                                </div>
-                                                <!-- // post_media -->
-                                                <div class="card_content">
-                                                    <div class="entry_cats">
-                                                        <ul class="categories">
-                                                            <li><a href="#">Blog</a></li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="post_title">
-                                                        <h3><a href="#">Getting ready to write a blog post</a></h3>
-                                                    </div>
-                                                    <div class="excerpt">
-                                                        <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos ... </p>
-                                                    </div>
-                                                </div>
-                                                <!-- // card_content -->
-                                            </div>
-                                            <!-- // card -->
-                                        </div>
-                                        <!-- // col -->
-                                    </div>
-                                    <!-- // row -->
-                                    <div class="row">
-                                        <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <div class="card">
-                                                <div class="post_media standard imghover">
-                                                    <a href="#"><img src="assets/dist/img/posts/one/6.jpg" alt="..."></a>
-                                                    <div class="is_postformate">
-                                                        <a href="#"><i class="fa fa-picture-o" aria-hidden="true"></i></a>
-                                                    </div>
-                                                </div>
-                                                <!-- // post_media -->
-                                                <div class="card_content">
-                                                    <div class="entry_cats">
-                                                        <ul class="categories">
-                                                            <li><a href="#">Photography</a></li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="post_title">
-                                                        <h3><a href="#">Special photoshoot for music video</a></h3>
-                                                    </div>
-                                                    <div class="excerpt">
-                                                        <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos ... </p>
-                                                    </div>
-                                                </div>
-                                                <!-- // card_content -->
-                                            </div>
-                                            <!-- // card -->
-                                        </div>
-                                        <!-- // col -->
-                                        <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <div class="card">
-                                                <div class="post_media standard imghover">
-                                                    <a href="#"><img src="assets/dist/img/posts/one/7.jpg" alt="..."></a>
-                                                </div>
-                                                <!-- // post_media -->
-                                                <div class="card_content">
-                                                    <div class="entry_cats">
-                                                        <ul class="categories">
-                                                            <li><a href="#">Military</a></li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="post_title">
-                                                        <h3><a href="#">US marine force training session</a></h3>
-                                                    </div>
-                                                    <div class="excerpt">
-                                                        <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos ... </p>
-                                                    </div>
-                                                </div>
-                                                <!-- // card_content -->
-                                            </div>
-                                            <!-- // card -->
-                                        </div>
-                                        <!-- // col -->
-                                    </div>
-                                    <!-- // row -->
                                 </div>
                                 <!-- // vb_rp_grid_style -->
                                 <div class="vb_pagination">

@@ -51,14 +51,13 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
-    Route::post('/favorite/save',[WebController::class,'favoriteSave'])->name('favorite.save');
-    Route::get('/favorite/games',[WebController::class,'favoriteGame'])->name('favorite.games');
+    Route::get('dashboard/blog/create',[UserPanelController::class,'create'])->name('userBlog.create');
+    Route::get('dashboard/blog',[UserPanelController::class,'indexBlog'])->name('userBlog.list');
+    Route::post('dashboard/blog/save',[UserPanelController::class,'save'])->name('userBlog.save');
+    Route::get('dashboard/blog/delete/{id}', [UserPanelController::class,'delete'])->name('userBlog.delete');
+    Route::get('dashboard/blog/edit/{id}',[UserPanelController::class,'edit'])->name('userBlog.edit');
+    Route::post('dashboard/blog/update', [UserPanelController::class, 'update'])->name('userBlog.update');
 
-    Route::get('/dashboard/my-books',[UserPanelController::class,'index'])->name('user.myBooks');
-  //  Route::get('/dashboard/book/read/{id}',[UserPanelController::class,'read'])->name('myBooks.read');
-    Route::get('/dashboard/book/read/{encryptedId}', [UserPanelController::class, 'read'])
-        ->name('myBooks.read')
-        ->where('encryptedId', '[A-Za-z0-9]+'); // Adjust the pattern based on your use case
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

@@ -17,11 +17,25 @@ use Illuminate\Http\Response; // Import the Response class
 
 class WebController extends Controller
 {
-    public function index(){
+//    public function index(){
+//        $slider = Blog::latest()->whereStatus(1)->wherePosition(0)->limit(4)->get();
+//        $blogs = Blog::whereStatus(1)->latest()->limit(9)->wherePosition(1)->get();
+//
+//        return view('frontend.home.index',compact('slider','blogs'));
+//    }
+
+
+    public function index()
+    {
         $slider = Blog::latest()->whereStatus(1)->wherePosition(0)->limit(4)->get();
-        $blogs = Blog::whereStatus(1)->latest()->limit(9)->wherePosition(1)->get();
-        return view('frontend.home.index',compact('slider','blogs'));
+        $blogs = Blog::whereStatus(1)->latest()->wherePosition(1)->get();
+
+        $featuredBlog = $blogs->splice(0, 1)->first(); // Extract the first post
+        $remainingBlogs = $blogs->take(8); // Take the next 8 posts for grid view
+
+        return view('frontend.home.index', compact('slider', 'featuredBlog', 'remainingBlogs'));
     }
+
 
 
     public function blogDetails($slug){
