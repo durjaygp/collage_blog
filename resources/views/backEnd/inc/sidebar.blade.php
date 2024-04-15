@@ -32,6 +32,14 @@
                             <span class="hide-menu">Dashboard</span>
                         </a>
                     </li>
+                    <li class="sidebar-item">
+                        <a class="sidebar-link" href="{{route('user-type.index')}}" aria-expanded="false">
+                  <span>
+                    <i class="ti ti-user-bolt"></i>
+                  </span>
+                            <span class="hide-menu">User Type</span>
+                        </a>
+                    </li>
 
                 {{-- Main sidebar start --}}
                 <!-- =================== -->
@@ -71,6 +79,15 @@
                         </a>
                     </li>
 
+                    <li class="sidebar-item">
+                        <a class="sidebar-link" href="{{route('blog.pending')}}">
+                  <span>
+                    <i class="ti ti-brand-blogger"></i>
+                  </span>
+                            <span class="hide-menu">Pending Blog</span>
+                        </a>
+                    </li>
+
 {{--                    <li class="sidebar-item">--}}
 {{--                        <a class="sidebar-link" href="{{route('comment.message')}}">--}}
 {{--                      <span>--}}
@@ -80,14 +97,14 @@
 {{--                        </a>--}}
 {{--                    </li>--}}
 
-{{--                    <li class="sidebar-item">--}}
-{{--                        <a class="sidebar-link" href="{{route('socials.index')}}">--}}
-{{--                          <span>--}}
-{{--                            <i class="ti ti-brand-facebook"></i>--}}
-{{--                          </span>--}}
-{{--                            <span class="hide-menu">Socials Link</span>--}}
-{{--                        </a>--}}
-{{--                    </li>--}}
+                    <li class="sidebar-item">
+                        <a class="sidebar-link" href="{{route('socials.index')}}">
+                          <span>
+                            <i class="ti ti-brand-facebook"></i>
+                          </span>
+                            <span class="hide-menu">Socials Link</span>
+                        </a>
+                    </li>
                     <!-- =================== -->
                     <li class="nav-small-cap">
                         <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
@@ -191,25 +208,6 @@
                         </a>
                     </li>
 
-                    <!-- =================== -->
-                    <!-- Books Intro -->
-                    <!-- =================== -->
-                    <li class="nav-small-cap">
-                        <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-                        <span class="hide-menu">Books</span>
-                    </li>
-                    <!-- =================== -->
-                    <!-- Books -->
-                    <!-- =================== -->
-                    <li class="sidebar-item">
-                        <a class="sidebar-link" href="{{route('user.myBooks')}}" aria-expanded="false">
-                  <span>
-                    <i class="ti ti-book-upload"></i>
-                  </span>
-                            <span class="hide-menu">My Books</span>
-                        </a>
-                    </li>
-                    <!-- =================== -->
                     <li class="nav-small-cap">
                         <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
                         <span class="hide-menu">Website</span>
@@ -231,8 +229,8 @@
                         <img src="{{asset('back')}}/assets/images/profile/user-1.jpg" class="rounded-circle" width="40" height="40" alt="">
                     </div>
                     <div class="john-title">
-                        <h6 class="mb-0 fs-4 fw-semibold">Mathew</h6>
-                        <span class="fs-2 text-dark">Designer</span>
+{{--                        <h6 class="mb-0 fs-4 fw-semibold">Mathew</h6>--}}
+{{--                        <span class="fs-2 text-dark">Designer</span>--}}
                     </div>
                     <button class="bg-transparent border-0 text-primary ms-auto" tabindex="0" type="button" aria-label="logout" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="logout">
                         <i class="ti ti-power fs-6"></i>

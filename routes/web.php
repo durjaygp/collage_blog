@@ -4,26 +4,18 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Web\HomeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\DashboardController;
-use App\Http\Controllers\Web\RecipeController;
-use App\Http\Controllers\Web\BookController;
 use App\Http\Controllers\Web\PagesController;
 use App\Http\Controllers\Admin\AdminCategoryController;
-use App\Http\Controllers\Admin\AdminBookController;
-use App\Http\Controllers\Web\CartController;
-use App\Http\Controllers\Web\OrderController;
-use App\Http\Controllers\Admin\AdminOrderController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\UserPanelController;
-use App\Http\Controllers\Admin\AdminRecipeController;
 use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Web\CommentController;
 use App\Http\Controllers\WebController;
-use App\Http\Controllers\Admin\GameController;
 use App\Http\Controllers\Admin\NewPageController;
 use App\Http\Controllers\SocialController;
 use App\Http\Controllers\NewsletterController;
-
+use App\Http\Controllers\UserTypeController;
 
 
 
@@ -86,6 +78,7 @@ Route::middleware(['auth', 'isadmin'])->group(function(){
     Route::get('admin/blog/delete/{id}', [BlogController::class,'delete'])->name('blog.delete');
     Route::get('admin/blog/edit/{id}',[BlogController::class,'edit'])->name('blog.edit');
     Route::post('admin/blog/update', [BlogController::class, 'update'])->name('blog.update');
+    Route::get('admin/blog/pending', [BlogController::class, 'pendingBlog'])->name('blog.pending');
 
 
 
@@ -111,7 +104,6 @@ Route::middleware(['auth', 'isadmin'])->group(function(){
 
   //Route::post('admin/website/settings/update', [SettingController::class, 'update'])->name('update.setting');
 
-    Route::resource('game',GameController::class);
 
     Route::resource('new-page', NewPageController::class);
 
@@ -122,6 +114,8 @@ Route::middleware(['auth', 'isadmin'])->group(function(){
 
     Route::post('ckeditor-upload', [AdminController::class, 'ckeditorUpload'])->name('ckeditor.upload');
     Route::post('/summernote/upload', [AdminController::class, 'summernoteUpload'])->name('summernote.upload');
+
+    Route::resource('user-type',UserTypeController::class);
 
 
 });

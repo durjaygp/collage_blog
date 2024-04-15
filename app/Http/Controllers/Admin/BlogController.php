@@ -21,6 +21,11 @@ class BlogController extends Controller
         return view('backEnd.blog.index',compact('blogs'));
     }
 
+    public function pendingBlog(){
+        $blogs = Blog::latest()->whereStatus(3)->get();
+        return view('backEnd.blog.pending_blog',compact('blogs'));
+    }
+
     public function create(){
         return view('backEnd.blog.create');
     }

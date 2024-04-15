@@ -21,6 +21,9 @@ return new class extends Migration
             $table->boolean('status')->default(1);
             $table->unsignedBigInteger('role_id');
             $table->foreign('role_id')->references('id')->on('roles')->default(1)->nullable();
+            $table->string('nic')->nullable();
+            $table->unsignedBigInteger('user_type_id');
+            $table->foreign('user_type_id')->references('id')->on('user_types')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

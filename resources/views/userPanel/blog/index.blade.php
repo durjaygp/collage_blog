@@ -52,7 +52,7 @@
                                         <th>Name</th>
                                         <th>Description</th>
                                         <th>Status</th>
-                                        <th>position</th>
+{{--                                        <th>position</th>--}}
                                         <th>Action</th>
                                     </tr>
                                     <!-- end row -->
@@ -66,7 +66,7 @@
                                         <td>
                                             {{ $row->category->name }}
                                         </td>
-                                        <td>{{$row->name}}</td>
+                                        <td>{{Str::limit($row->name,22)}}</td>
                                         <td>{{\Illuminate\Support\Str::limit($row->description,20)}}</td>
                                         <td>
                                             @if($row->status == 1)
@@ -77,20 +77,20 @@
                                                 <span class="badge bg-warning">Pending</span>
                                             @endif
                                         </td>
-                                        <td>
-                                            @if($row->position == 1)
-                                                <span class="badge bg-secondary">Latest Blog</span>
-                                            @elseif($row->position == 2)
-                                                <span class="badge bg-success">Editorial Pick</span>
-                                            @elseif($row->position == 0)
-                                                <span class="badge bg-success">Slider</span>
-                                            @endif
-                                        </td>
+{{--                                        <td>--}}
+{{--                                            @if($row->position == 1)--}}
+{{--                                                <span class="badge bg-secondary">Latest Blog</span>--}}
+{{--                                            @elseif($row->position == 2)--}}
+{{--                                                <span class="badge bg-success">Editorial Pick</span>--}}
+{{--                                            @elseif($row->position == 0)--}}
+{{--                                                <span class="badge bg-success">Slider</span>--}}
+{{--                                            @endif--}}
+{{--                                        </td>--}}
                                         <td>
                                             <div class="action-btn">
-                                                <a href="{{route('blog.edit',$row->id)}}" class="btn btn-sm btn-primary">
-                                                    <i class="ti ti-pencil fs-5"></i>
-                                                </a>
+{{--                                                <a href="{{route('blog.edit',$row->id)}}" class="btn btn-sm btn-primary">--}}
+{{--                                                    <i class="ti ti-pencil fs-5"></i>--}}
+{{--                                                </a>--}}
                                                 <a href="#"
                                                    onclick="event.preventDefault();
                                                        if (confirm('Are you sure you want to delete?'))

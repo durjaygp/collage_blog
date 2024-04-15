@@ -20,14 +20,13 @@
                     <div class="col">
                         <div class="header_extra">
                             <div class="social">
+                                @php
+                                    $socials = \App\Models\Social::all();
+                                @endphp
                                 <ul class="social_icons_list">
-                                    <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-vk" aria-hidden="true"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-youtube" aria-hidden="true"></i></a></li>
+                                    @foreach($socials as $row)
+                                        <li><a href="{{$row->link}}"><i class="{{$row->icon}}" aria-hidden="true"></i></a></li>
+                                    @endforeach
                                 </ul>
                             </div>
                             <!-- // social_icons -->
@@ -47,8 +46,6 @@
         <div class="vb_container">
             <div class="site_idty_entry">
                 <div class="logo">
-                    <!-- <h1 class="site-title"><a href="#" rel="home">Viable Blog</a></h1>
-                    <p class="site-description">Clean Modern blog Template</p> -->
                     <a href="index.html"><img src="{{asset('homePage')}}/img/logo_darkbig.png" alt="..."></a>
                 </div>
                 <!-- // logo -->
@@ -62,16 +59,7 @@
         <div class="vb_container">
             <div class="primary_navigation has_search">
                 <ul>
-                    <li><a href="#">Home Layout</a>
-                        <ul>
-                            <li><a href="index.html">Home I Grid</a></li>
-                            <li><a href="index1-full.html">Home I Grid Full</a></li>
-                            <li><a href="index-2.html">Home II List</a></li>
-                            <li><a href="index2-full.html">Home II List Full</a></li>
-                            <li><a href="index-3.html">Home III Masonry</a></li>
-                            <li><a href="index3-full.html">Home III Masonry Full</a></li>
-                            <li><a href="index-4.html">Home IV</a></li>
-                        </ul>
+                    <li><a href="{{route('home')}}">Home</a>
                     </li>
                     <li><a href="#">Single Pages</a>
                         <ul>
@@ -89,15 +77,28 @@
                             <li><a href="archive-2.html">Archive II</a></li>
                         </ul>
                     </li>
-                    <li><a href="#">Other Pages</a>
-                        <ul>
-                            <li><a href="search.html">Search I</a></li>
-                            <li><a href="search-full.html">Search I Full</a></li>
-                            <li><a href="404.html">404 page</a></li>
-                            <li><a href="nothing-found.html">Nothing Found Page</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="#">Purchase</a></li>
+                    @auth
+                        <li><a href="#"> {{auth()->user()->name}} </a>
+                            <ul>
+                                @if(auth()->user()->role->name ==='user')
+                                <li><a href="{{route('profile.edit')}}">My Profile</a></li>
+                                @else
+                                    <li><a href="{{route('admin.index')}}">Admin Panel</a></li>
+                                @endif
+                                <li><a href="{{route('logout')}}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a></li>
+                                <form method="POST" action="{{ route('logout') }}" class="d-none" id="logout-form">
+                                    @csrf
+                                </form>
+                            </ul>
+                        </li>
+                    @else
+                        <li><a href="#"> Login </a>
+                            <ul>
+                                <li><a href="{{route('login')}}">Login</a></li>
+                                <li><a href="{{route('register')}}">Registration</a></li>
+                            </ul>
+                        </li>
+                    @endauth
                 </ul>
             </div>
             <!-- // primary_navigation -->

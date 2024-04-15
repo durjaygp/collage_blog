@@ -49,96 +49,99 @@
 
 
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="csrf-token" content="ndoryz0dzU8OeFsE81NBwTeOJ9XkhLTTK7Dmqerd">
+ <!DOCTYPE html>
+ <html lang="en" dir="ltr" data-bs-theme="light" data-color-theme="Blue_Theme" data-layout="vertical">
+ <head>
+     <!-- Required meta tags -->
+     <meta charset="UTF-8" />
+     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Laravel</title>
+     <!-- Favicon icon-->
+     <link rel="shortcut icon" type="image/png" href="{{asset('back')}}/assets/images/logos/favicon.png" />
 
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+     <!-- Core Css -->
+     <link  id="themeColors"  rel="stylesheet" href="{{asset('back')}}/assets/css/style.min.css" />
 
-    <!-- Scripts -->
-    <link rel="preload" as="style" href="http://apiit_blog.test/build/assets/app-Bv9eCx8e.css" /><link rel="modulepreload" href="http://apiit_blog.test/build/assets/app-CifqVuM1.js" /><link rel="stylesheet" href="http://apiit_blog.test/build/assets/app-Bv9eCx8e.css" data-navigate-track="reload" /><script type="module" src="http://apiit_blog.test/build/assets/app-CifqVuM1.js" data-navigate-track="reload"></script>
-    <!-- Styles -->
-    <!-- Livewire Styles --><style >[wire\:loading][wire\:loading], [wire\:loading\.delay][wire\:loading\.delay], [wire\:loading\.inline-block][wire\:loading\.inline-block], [wire\:loading\.inline][wire\:loading\.inline], [wire\:loading\.block][wire\:loading\.block], [wire\:loading\.flex][wire\:loading\.flex], [wire\:loading\.table][wire\:loading\.table], [wire\:loading\.grid][wire\:loading\.grid], [wire\:loading\.inline-flex][wire\:loading\.inline-flex] {display: none;}[wire\:loading\.delay\.none][wire\:loading\.delay\.none], [wire\:loading\.delay\.shortest][wire\:loading\.delay\.shortest], [wire\:loading\.delay\.shorter][wire\:loading\.delay\.shorter], [wire\:loading\.delay\.short][wire\:loading\.delay\.short], [wire\:loading\.delay\.default][wire\:loading\.delay\.default], [wire\:loading\.delay\.long][wire\:loading\.delay\.long], [wire\:loading\.delay\.longer][wire\:loading\.delay\.longer], [wire\:loading\.delay\.longest][wire\:loading\.delay\.longest] {display: none;}[wire\:offline][wire\:offline] {display: none;}[wire\:dirty]:not(textarea):not(input):not(select) {display: none;}:root {--livewire-progress-bar-color: #2299dd;}[x-cloak] {display: none !important;}</style>
-</head>
-<body>
-<div class="font-sans text-gray-900 antialiased">
-    <div class="bg-no-repeat bg-cover bg-top relative" style="background-image: url(https://apiit.lk/wp-content/uploads/2024/03/api-6.jpeg); height:695px">
-        <div class="absolute bg-gradient-to-b from-blue-500 to-blue-900 opacity-60 inset-0 z-0"></div>
-        <div class="min-h-screen sm:flex sm:flex-row mx-0 justify-center">
-            <div class="flex-col flex self-center p-10 sm:max-w-5xl xl:max-w-2xl z-10">
-                <!-- Left side with branding -->
-                <div class="self-start hidden lg:flex flex-col text-white">
-                    <img src="" class="mb-3">
-                    <h1 class="mb-3 font-bold text-5xl">Hi! Welcome</h1>
-                    <p class="pr-3">"Let Your Learning Journey Begin – Inspiring Minds, Empowering Futures."
-                    </p>
-                </div>
-            </div>
-            <div class="flex justify-center self-center z-10">
-                <!-- Authentication Card -->
-                <div class="p-12 bg-white mx-auto rounded-2xl w-100 ">
-                    <form method="POST" action="http://apiit_blog.test/login">
-                        <input type="hidden" name="_token" value="ndoryz0dzU8OeFsE81NBwTeOJ9XkhLTTK7Dmqerd" autocomplete="off">                        <div class="flex justify-left items-left">
-                            <div class="relative">
-                                <div class="ml-2 mt-5 w-8 h-8 bg-gradient-to-br from-blue-400  to-green-500 rounded-full animate-pulse absolute top-1/12 left-1/12 transform -translate-x-1/2 -translate-y-1/2 opacity-15" ></div>
-                                <div class="ml-2 mt-5 w-6 h-6 bg-gradient-to-br from-blue-400  to-green-500 rounded-full animate-pulse absolute top-1/64 left-1/64 transform -translate-x-1/2 -translate-y-1/2 opacity-30"></div>
-                                <div class="ml-2 mt-5 w-4 h-4 bg-gradient-to-br from-blue-400  to-green-500 rounded-full animate-pulse absolute top-1/128 left-1/128 transform -translate-x-1/2 -translate-y-1/2 opacity-40"></div>
-                                <div class="ml-2 mt-5 w-3 h-3 bg-gradient-to-br from-blue-400  to-green-500 rounded-full animate-pulse absolute top-1/256 left-1/256 transform -translate-x-1/2 -translate-y-1/2"></div>
-                            </div>
-                        </div>
-                        <div class="mb-4">
-                            <h3 class="font-semibold text-3xl pt-1 text-gray-800">&nbsp;&nbsp;&nbsp;&nbsp;Login</h3>
-                            <p class="text-gray-500">Please login to your account.</p>
-                        </div>
-                        <div class="space-y-5">
-                            <div class="space-y-2">
-                                <label class="text-sm font-medium text-gray-700 tracking-wide">Email</label>
-                                <input  class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm w-full text-base px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-green-400" id="email" type="email" name="email" required="required" autofocus="autofocus" autocomplete="username" placeholder="mail@gmail.com">
-                            </div>
-                            <div class="space-y-2">
-                                <label class="mb-5 text-sm font-medium text-gray-700 tracking-wide">Password</label>
-                                <input  class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm w-full content-center text-base px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-green-400" id="password" type="password" name="password" required="required" autocomplete="current-password" placeholder="Enter your password">
-                            </div>
-                            <div class="flex items-center justify-between">
-                                <div class="flex items-center">
-                                    <input type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500 h-4 w-4 bg-blue-500 focus:ring-blue-400 border-gray-300 rounded" id="remember_me" name="remember">
-                                    <label for="remember_me" class="ml-2 block text-sm text-gray-800">Remember me</label>
-                                </div>
-                                <div class="text-sm">
-                                    <a href="http://apiit_blog.test/forgot-password" class="text-blue-500 hover:text-blue-800">Forgot your password?</a>
-                                </div>
-                            </div>
-                            <div>
-                                <button type="submit" class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150 w-full flex justify-center bg-blue-400 hover:bg-blue-600 text-gray-100 p-3 rounded-full tracking-wide font-semibold shadow-lg cursor-pointer transition ease-in duration-500">
-                                    Login
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                    <div class="pt-5 text-center text-gray-400 text-xs">
-                        <span>
-                            Copyright © 2021-2022
-                            <a href="https://codepen.io/uidesignhub" rel="" target="_blank" title="Ajimon" class="text-green hover:text-green-500">AJI</a>
-                        </span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+     <title>Login</title>
+ </head>
 
-<!-- Livewire Scripts -->
-<script src="/livewire/livewire.js?id=d02a3788"   data-csrf="ndoryz0dzU8OeFsE81NBwTeOJ9XkhLTTK7Dmqerd" data-update-uri="/livewire/update" data-navigate-once="true"></script>
-</body>
-</html>
+ <body>
+ <!-- Preloader -->
+ <div class="preloader">
+     <img src="{{asset('back')}}/assets/images/logos/favicon.png" alt="loader" class="lds-ripple img-fluid" />
+ </div>
+ <div id="main-wrapper" class="auth-customizer-none">
+     <div class="position-relative overflow-hidden radial-gradient min-vh-100 w-100">
+         <div class="position-relative z-index-5">
+             <div class="row">
+                 <div class="col-xl-7 col-xxl-8">
+                     <a href="../main/index.html" class="text-nowrap logo-img d-block px-4 py-9 w-100">
+                         <img src="{{asset('back')}}/assets/images/logos/dark-logo.svg" class="dark-logo" alt="Logo-Dark" />
+                         <img src="{{asset('back')}}/assets/images/logos/light-logo.svg" class="light-logo" alt="Logo-light" />
+                     </a>
+                     <div class="d-none d-xl-flex align-items-center justify-content-center h-n80">
+                         <img src="{{asset('back')}}/assets/images/backgrounds/login-security.svg" alt="modernize-img" class="img-fluid" width="500">
+                     </div>
+                 </div>
+                 <div class="col-xl-5 col-xxl-4">
+                     <div class="authentication-login min-vh-100 bg-body row justify-content-center align-items-center p-4">
+                         <div class="auth-max-width col-sm-12 col-md-7 col-xl-9 px-4">
+                             <h2 class="mb-1 fs-7 fw-bolder">Welcome to {{$website->name}}</h2>
+                             <p class="mb-7">Your Admin Dashboard</p>
+                             <div class="position-relative text-center my-4">
+                                 <p class="mb-0 fs-4 px-3 d-inline-block bg-body text-dark z-index-5 position-relative">or sign
+                                     in
+                                     with</p>
+                                 <span class="border-top w-100 position-absolute top-50 start-50 translate-middle"></span>
+                             </div>
+                             <form method="post" action="{{route('login')}}">
+                                 @csrf
+                                 <div class="mb-3">
+                                     <label for="exampleInputEmail1" class="form-label">Email</label>
+                                     <input type="email" class="form-control" id="exampleInputEmail1" name="email">
+                                 </div>
+                                 <div class="mb-4">
+                                     <label for="exampleInputPassword1" class="form-label">Password</label>
+                                     <input type="password" name="password" class="form-control" id="exampleInputPassword1">
+                                 </div>
 
+                                 <button type="submit" class="btn btn-primary w-100 py-8 mb-4 rounded-2">Sign In</button>
+                                 <div class="d-flex align-items-center justify-content-center">
+                                     <p class="fs-4 mb-0 fw-medium">      <a class="text-primary fw-medium fs-3" href="{{route('password.request')}}">Forgot Password ?</a></p>
+                                     <a class="text-primary fw-medium ms-2" href="{{route('register')}}">Create an
+                                         account</a>
+                                 </div>
+                             </form>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+         </div>
+     </div>
+ </div>
+ <!-- Import Js Files -->
+ <script src="{{asset('back')}}/assets/libs/jquery/dist/jquery.min.js"></script>
+ <script src="{{asset('back')}}/assets/libs/simplebar/dist/simplebar.min.js"></script>
+ <script src="{{asset('back')}}/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+ <!-- core files -->
+ <script src="{{asset('back')}}/assets/js/app.min.js"></script>
+ <script src="{{asset('back')}}/assets/js/app.init.js"></script>
+ <script src="{{asset('back')}}/assets/js/app-style-switcher.js"></script>
+ <script src="{{asset('back')}}/assets/js/sidebarmenu.js"></script>
+ <script src="{{asset('back')}}/assets/js/custom.js"></script>
+ <script src="{{asset('back')}}/assets/libs/apexcharts/dist/apexcharts.min.js"></script>
+ <script src="{{asset('back')}}/assets/js/dashboard2.js"></script>
+ <script src="{{asset('back')}}/assets/js/apps/contact.js"></script>
+ <script src="{{asset('/')}}iziToast/dist/js/iziToast.min.js"></script>
+ <script src="{{asset('back')}}/assets/libs/datatables.net/js/jquery.dataTables.min.js"></script>
+ <script src="{{asset('back')}}/assets/js/datatable/datatable-basic.init.js"></script>
+
+ <!-- solar icons -->
+ <script src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.8/dist/iconify-icon.min.js"></script>
+ </body>
+
+ </html>
 
 
 

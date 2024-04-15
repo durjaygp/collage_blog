@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\UserType;
 
 
 class DatabaseSeeder extends Seeder
@@ -34,6 +35,11 @@ class DatabaseSeeder extends Seeder
             'name' => 'admin',
         ]);
 
+        \App\Models\UserType::factory()->create([
+            'id' => 1,
+            'title' => 'All Access',
+        ]);
+
 
         \App\Models\User::create([
             'id' => 1,
@@ -42,7 +48,9 @@ class DatabaseSeeder extends Seeder
             'email_verified_at' => now(),
             'password' => bcrypt('12345678'), // password = 12345678
             'remember_token' => Str::random(10),
-            'role_id' => 2
+            'role_id' => 2,
+            'user_type_id' => 1,
+            'nic' => 1,
         ]);
 
         \App\Models\User::create([
@@ -52,7 +60,9 @@ class DatabaseSeeder extends Seeder
             'email_verified_at' => now(),
             'password' => bcrypt('12345678'), // password = 12345678
             'remember_token' => Str::random(10),
-            'role_id' => 1
+            'role_id' => 1,
+             'user_type_id' => 1,
+             'nic' => null,
         ]);
 
         \App\Models\Setting::create([

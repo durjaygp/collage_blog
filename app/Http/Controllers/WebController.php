@@ -17,14 +17,6 @@ use Illuminate\Http\Response; // Import the Response class
 
 class WebController extends Controller
 {
-//    public function index(){
-//        $slider = Blog::latest()->whereStatus(1)->wherePosition(0)->limit(4)->get();
-//        $blogs = Blog::whereStatus(1)->latest()->limit(9)->wherePosition(1)->get();
-//
-//        return view('frontend.home.index',compact('slider','blogs'));
-//    }
-
-
     public function index()
     {
         $slider = Blog::latest()->whereStatus(1)->wherePosition(0)->limit(4)->get();

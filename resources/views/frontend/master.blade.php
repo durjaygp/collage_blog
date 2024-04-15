@@ -19,10 +19,12 @@
     <!-- Main Stylesheet  -->
     <link href="{{asset('homePage')}}/css/main.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.1/css/font-awesome.css" />
+    <link rel="stylesheet" href="{{asset('/')}}iziToast/dist/css/iziToast.min.css">
     <!-- Respond js  -->
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+
     <![endif]-->
 </head>
 
@@ -38,6 +40,31 @@
 </div>
 
 <script src="{{asset('homePage')}}/js/bundle.min.js"></script>
+<script src="{{asset('/')}}iziToast/dist/js/iziToast.min.js"></script>
+@if($errors->any())
+    @foreach($errors->all() as $error)
+        <script>
+            iziToast.error({
+                title: '',
+                position:'topRight',
+                message: '{{$error}}',
+            });
+        </script>
+    @endforeach
+
+@endif
+
+@if(session()->get('success'))
+    <script>
+        iziToast.success({
+            title: '',
+            position:'topRight',
+            message: '{{session()->get('success')}}',
+        });
+
+    </script>
+@endif
+
 </body>
 
 </html>
