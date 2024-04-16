@@ -16,33 +16,38 @@ use App\Http\Controllers\Admin\NewPageController;
 use App\Http\Controllers\SocialController;
 use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\UserTypeController;
+use App\Http\Controllers\EventsController;
+
 
 
 
 // =============== Home Routes ===============
-Route::get('/', [WebController::class,'index'])->name('home');
-Route::get('/blog/{slug}', [WebController::class,'blogDetails'])->name('home.blog');
-Route::get('/category/{slug}', [WebController::class,'category'])->name('home.category');
-Route::get('/about-me', [WebController::class,'about'])->name('home.about');
-Route::get('/privacy-policy', [WebController::class,'privacyPolicy'])->name('privacy-policy');
-Route::get('/search',[WebController::class,'searchRecipe'])->name('search.blog');
-Route::get('sitemap.xml', [WebController::class, 'siteMap']);
-
-Route::get('/page/{slug}', [HomeController::class,'page'])->name('home.page');
-
-Route::post('/contact/save', [HomeController::class,'contactMessage'])->name('contact.save');
-
-Route::post('comment/save',[CommentController::class,'store'])->name('comment.save');
-Route::get('/comments/delete/{id}', [CommentController::class,'destroy'])->name('comments.destroy');
-
-
-
+//Route::get('/', function() {
+//    return view('auth.login');
+//});
 
 Route::get('/dashboard', function () {
     return view('userPanel.admin.admin');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/', [WebController::class,'index'])->name('home');
+    Route::get('/blog/{slug}', [WebController::class,'blogDetails'])->name('home.blog');
+    Route::get('/category/{slug}', [WebController::class,'category'])->name('home.category');
+    Route::get('/about-me', [WebController::class,'about'])->name('home.about');
+    Route::get('/privacy-policy', [WebController::class,'privacyPolicy'])->name('privacy-policy');
+    Route::get('/search',[WebController::class,'searchRecipe'])->name('search.blog');
+    Route::get('sitemap.xml', [WebController::class, 'siteMap']);
+
+    Route::get('/page/{slug}', [HomeController::class,'page'])->name('home.page');
+
+    Route::post('/contact/save', [HomeController::class,'contactMessage'])->name('contact.save');
+
+    Route::post('comment/save',[CommentController::class,'store'])->name('comment.save');
+    Route::get('/comments/delete/{id}', [CommentController::class,'destroy'])->name('comments.destroy');
+
+
+
     Route::get('dashboard/blog/create',[UserPanelController::class,'create'])->name('userBlog.create');
     Route::get('dashboard/blog',[UserPanelController::class,'indexBlog'])->name('userBlog.list');
     Route::post('dashboard/blog/save',[UserPanelController::class,'save'])->name('userBlog.save');
@@ -116,6 +121,8 @@ Route::middleware(['auth', 'isadmin'])->group(function(){
     Route::post('/summernote/upload', [AdminController::class, 'summernoteUpload'])->name('summernote.upload');
 
     Route::resource('user-type',UserTypeController::class);
+
+    Route::resource('admin-events',EventsController::class);
 
 
 });

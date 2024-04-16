@@ -67,24 +67,29 @@
                                                 @endif
                                             </td>
                                             <td>
-                                                <div class="action-btn">
-                                                    <a href="{{route('user-type.edit',$row->id)}}" class="btn btn-sm btn-primary">
-                                                        <i class="ti ti-pencil fs-5"></i>
-                                                    </a>
-                                                    <a href="{{ route('user-type.destroy', $row->id) }}"
-                                                       onclick="event.preventDefault();
-                                                           if (confirm('Are you sure you want to delete?'))
-                                                           document.getElementById('delete-form-{{ $row->id }}').submit();"
-                                                       class="btn btn-sm btn-danger text-white delete ms-2">
-                                                        <i class="ti ti-trash fs-5"></i>
-                                                    </a>
+                                                @if($row->id == 1)
 
-                                                    <form id="delete-form-{{ $row->id }}" action="{{ route('user-type.destroy', $row->id) }}" method="POST" style="display: none;">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                    </form>
+                                                @else
+                                                    <div class="action-btn">
+                                                        <a href="{{route('user-type.edit',$row->id)}}" class="btn btn-sm btn-primary">
+                                                            <i class="ti ti-pencil fs-5"></i>
+                                                        </a>
+                                                        <a href="{{ route('user-type.destroy', $row->id) }}"
+                                                           onclick="event.preventDefault();
+                                                               if (confirm('Are you sure you want to delete?'))
+                                                               document.getElementById('delete-form-{{ $row->id }}').submit();"
+                                                           class="btn btn-sm btn-danger text-white delete ms-2">
+                                                            <i class="ti ti-trash fs-5"></i>
+                                                        </a>
 
-                                                </div>
+                                                        <form id="delete-form-{{ $row->id }}" action="{{ route('user-type.destroy', $row->id) }}" method="POST" style="display: none;">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                        </form>
+
+                                                    </div>
+                                                @endif
+
                                             </td>
                                         </tr>
                                         <!-- end row -->

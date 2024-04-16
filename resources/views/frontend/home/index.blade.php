@@ -17,7 +17,7 @@
                                 </div>
                                 <!-- // entry_cats -->
                                 <div class="post_title">
-                                    <h2><a href="#">{{$row->name}}</a></h2>
+                                    <h2><a href="{{route('home.blog',$row->slug)}}">{{$row->name}}</a></h2>
                                 </div>
                                 <!-- // title -->
                                 <div class="the_permalink">
@@ -190,16 +190,34 @@
                                         @endforeach
                                     </div>
                                 </div>
-                                <!-- // vb_rp_grid_style -->
+
                                 <div class="vb_pagination">
-                                    <div class="pagi_style1">
-                                        <ul class="clearfix">
-                                            <li class="previous"><a href="#">Prev</a></li>
-                                            <li class="next"><a href="#">Next</a></li>
-                                        </ul>
+                                        <div class="pagi_style2">
+                                            <ul class="clearfix">
+                                                <!-- Previous Page Link -->
+                                                @if ($remainingBlogs->onFirstPage())
+                                                    <li class="disabled"><span>&laquo; Prev</span></li>
+                                                @else
+                                                    <li><a href="{{ $remainingBlogs->previousPageUrl() }}" rel="prev">&laquo; Prev</a></li>
+                                                @endif
+
+                                            <!-- Pagination Elements -->
+                                                @for ($i = 1; $i <= $remainingBlogs->lastPage(); $i++)
+                                                    <li class="{{ $i === $remainingBlogs->currentPage() ? 'page current' : 'page' }}">
+                                                        <a href="{{ $remainingBlogs->url($i) }}">{{ $i }}</a>
+                                                    </li>
+                                                @endfor
+
+                                            <!-- Next Page Link -->
+                                                @if ($remainingBlogs->hasMorePages())
+                                                    <li><a href="{{ $remainingBlogs->nextPageUrl() }}" rel="next">Next &raquo;</a></li>
+                                                @else
+                                                    <li class="disabled"><span>Next &raquo;</span></li>
+                                                @endif
+                                            </ul>
+                                        </div>
                                     </div>
-                                </div>
-                                <!-- // vb_pagination -->
+
                             </div>
                             <!-- // recent_posts_holder -->
                         </main>

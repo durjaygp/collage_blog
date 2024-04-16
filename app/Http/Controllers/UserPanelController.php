@@ -65,6 +65,7 @@ class UserPanelController extends Controller
         $blog->name = $request->name;
         $blog->slug = Str::slug($request->name, '-');
         $blog->user_id = auth()->user()->id;
+        $blog->type_id = auth()->user()->user_type_id;
         $blog->description = $request->description;
         $blog->category_id = $request->category_id;
         $blog->main_content = $request->content;

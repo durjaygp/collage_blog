@@ -27,6 +27,8 @@ return new class extends Migration
             $table->string('status')->nullable();
             $table->string('type')->nullable();
             $table->string('position')->nullable();
+            $table->unsignedBigInteger('type_id');
+            $table->foreign('type_id')->references('id')->on('user_types');
             // Seo Content
             $table->longText('seo_description')->nullable();
             $table->longText('seo_tags')->nullable();

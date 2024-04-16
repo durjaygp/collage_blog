@@ -5,6 +5,7 @@
                 <div class="row">
                     @php
                         $categoryHeaders = \App\Models\Category::whereStatus(1)->latest()->limit(5)->get();
+                        $categoryMenu = \App\Models\Category::whereStatus(1)->latest()->get();
                     @endphp
                     <div class="col nav_col">
                         <div class="secondary_nav">
@@ -61,14 +62,11 @@
                 <ul>
                     <li><a href="{{route('home')}}">Home</a>
                     </li>
-                    <li><a href="#">Single Pages</a>
+                    <li><a href="#">Category</a>
                         <ul>
-                            <li><a href="single.html">Single Page</a></li>
-                            <li><a href="single-audio.html">Single Audio</a></li>
-                            <li><a href="single-video.html">Single Classic Video</a></li>
-                            <li><a href="single-gallery.html">Single Classic Gallery</a></li>
-                            <li><a href="single-link.html">Single Classic Link</a></li>
-                            <li><a href="single-quote.html">Single Classic Quote</a></li>
+                            @foreach($categoryMenu as $row)
+                                <li><a href="{{route('home.category',$row->slug)}}">{{$row->name}}</a></li>
+                            @endforeach
                         </ul>
                     </li>
                     <li><a href="#">Archive Pages</a>

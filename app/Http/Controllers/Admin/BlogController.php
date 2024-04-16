@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Blog;
 use App\Models\Category;
 use App\Models\Recipe;
+use App\Models\UserType;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -17,7 +18,6 @@ class BlogController extends Controller
 {
     public function index(){
         $blogs = Blog::latest()->whereType('blog')->get();
-
         return view('backEnd.blog.index',compact('blogs'));
     }
 
@@ -27,13 +27,15 @@ class BlogController extends Controller
     }
 
     public function create(){
-        return view('backEnd.blog.create');
+        $types = UserType::all();
+        return view('backEnd.blog.create',compact('types'));
     }
 
     public function edit($id){
         $categories = Category::whereStatus(1)->get();
         $blog = Blog::find($id);
-        return view('backEnd.blog.edit',compact('categories','blog'));
+        $types = UserType::all();
+        return view('backEnd.blog.edit',compact('categories','blog','types'));
     }
 
     public function save(Request $request){
@@ -77,6 +79,7 @@ class BlogController extends Controller
         $blog->position = $request->position;
         $blog->type = 'blog';
         $blog->seo_description = $request->seo_description;
+        $blog->type_id = $request->type_id;
         $blog->seo_tags = $request->seo_tags;
         $blog->seo_keywords = $request->seo_keywords;
         if ($request->file('image')) {

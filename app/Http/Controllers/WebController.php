@@ -12,59 +12,77 @@ use App\Models\Page;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Auth;
-use Illuminate\Http\Response; // Import the Response class
+use Illuminate\Http\Response;
+use Gate;
+
 
 
 class WebController extends Controller
 {
     public function index()
     {
-        $slider = Blog::latest()->whereStatus(1)->wherePosition(0)->limit(4)->get();
-        $blogs = Blog::whereStatus(1)->latest()->wherePosition(1)->get();
+        // Fetch the authenticated user
+        $user = auth()->user();
+        $who = $user->user_type_id;
+        if ($who == 1){
+            $blogsQuery = Blog::whereStatus(1)
+                ->wherePosition(1)
+                ->latest();
 
-        $featuredBlog = $blogs->splice(0, 1)->first(); // Extract the first post
-        $remainingBlogs = $blogs->take(8); // Take the next 8 posts for grid view
+            $remainingBlogs = $blogsQuery->paginate(8);
 
+            $featuredBlog = $blogsQuery->first();
+
+            $slider = Blog::latest()
+                ->whereStatus(1)
+                ->wherePosition(0)
+                ->limit(4)
+                ->get();
+        }else{
+            $blogsQuery = Blog::where('type_id', $who) // Filter by user_type_id
+            ->whereStatus(1)
+                ->wherePosition(1)
+                ->latest();
+
+            $remainingBlogs = $blogsQuery->paginate(8);
+
+            $featuredBlog = $blogsQuery->first();
+
+            $slider = Blog::latest()
+                ->whereStatus(1)
+                ->where('type_id', $who)
+                ->wherePosition(0)
+                ->limit(4)
+                ->get();
+        }
         return view('frontend.home.index', compact('slider', 'featuredBlog', 'remainingBlogs'));
     }
-
-
 
     public function blogDetails($slug){
         $blog = Blog::where('slug',$slug)->firstOrFail();
         $comments = Comment::where('blog_id', $blog->id)->get();
+        $user = auth()->user();
+        $who = $user->user_type_id;
+        if ($who == 1){
+            $relatedBlogs = Blog::whereStatus(1)->limit(4)->get();
+        }else{
+            $relatedBlogs = Blog::whereStatus(1)
+                ->where('type_id',$who)
+                ->limit(4)->get();
+        }
+
 
         $wordCount = str_word_count(strip_tags($blog->main_content));
         $readingTime = ceil($wordCount / 200);
-        return view('frontEnd.blog.details',compact('blog','comments','readingTime'));
+        return view('frontend.blog.details',compact('blog','comments','relatedBlogs','readingTime'));
     }
 
     public function category($slug) {
-        $ct = Category::where('slug', $slug)->firstOrFail();
+        $category = Category::where('slug', $slug)->firstOrFail();
+        $mainId = $category->id;
+        $blogs = Blog::where('category_id', $mainId)->whereStatus(1)->paginate(10);
 
-        // Fetch blog posts for the given category
-        $blogs = Blog::where('category_id', 'LIKE', '%"'.$ct->id.'"%')->whereStatus(1)->get();
-
-        // Decode the category IDs for each blog post
-        $nextBlog = $blogs->map(function($blog) {
-            $categoryIds = json_decode($blog->category_id, true);
-            $categories = [];
-
-            // Fetch category details for each category ID
-            foreach ($categoryIds as $categoryId) {
-                $category = Category::find($categoryId);
-                if ($category) {
-                    $categories[] = $category;
-                }
-            }
-
-            // Add categories to the blog post object
-            $blog->categories = $categories;
-            return $blog;
-        });
-
-        // Pass the category and related blog posts to the view
-        return view('frontEnd_old.blog.category', compact('ct', 'nextBlog'));
+        return view('frontend.category.category', compact('category', 'blogs'));
     }
 
     public function privacyPolicy(){
