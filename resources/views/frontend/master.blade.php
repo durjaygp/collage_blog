@@ -10,8 +10,8 @@
     <!-- Title for our website -->
     <title>@yield('title')</title>
     <!-- Favicon and touch icons  -->
-    <link rel="shortcut icon" href="{{asset('homePage')}}/img/fav.png" type="image/x-icon">
-    <link rel="icon" href="{{asset('homePage')}}/img/fav.png" type="image/x-icon">
+    <link rel="shortcut icon" href="{{asset($website->fav_icon)}}" type="image/x-icon">
+    <link rel="icon" href="{{asset($website->fav_icon)}}" type="image/x-icon">
     <!-- Google fonts  -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700,700i" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Laila:400,500,600,700" rel="stylesheet">

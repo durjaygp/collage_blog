@@ -44,10 +44,11 @@ class ProfileController extends Controller
 
                 $user->image = $newImage;
             }
+            $user->personal_details = $request->personal_details;
 
             $user->save();
 
-            return redirect()->route('profile.edit')->with('status', 'profile-updated');
+            return redirect()->route('profile.edit')->with('status', 'profile updated');
         } catch (\Exception $e) {
             // Log the error
             \Log::error('Profile update error: ' . $e->getMessage());

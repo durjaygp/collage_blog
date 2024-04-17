@@ -62,23 +62,23 @@
 
      <!-- Core Css -->
      <link  id="themeColors"  rel="stylesheet" href="{{asset('back')}}/assets/css/style.min.css" />
-
+     <link rel="stylesheet" href="{{asset('/')}}iziToast/dist/css/iziToast.min.css">
      <title>Login</title>
  </head>
 
  <body>
  <!-- Preloader -->
  <div class="preloader">
-     <img src="{{asset('back')}}/assets/images/logos/favicon.png" alt="loader" class="lds-ripple img-fluid" />
+     <img src="{{asset($website->fav_icon)}}" alt="loader" class="lds-ripple img-fluid" />
  </div>
  <div id="main-wrapper" class="auth-customizer-none">
      <div class="position-relative overflow-hidden radial-gradient min-vh-100 w-100">
          <div class="position-relative z-index-5">
              <div class="row">
                  <div class="col-xl-7 col-xxl-8">
-                     <a href="../main/index.html" class="text-nowrap logo-img d-block px-4 py-9 w-100">
-                         <img src="{{asset('back')}}/assets/images/logos/dark-logo.svg" class="dark-logo" alt="Logo-Dark" />
-                         <img src="{{asset('back')}}/assets/images/logos/light-logo.svg" class="light-logo" alt="Logo-light" />
+                     <a href="#" class="text-nowrap logo-img d-block px-4 py-9 w-100">
+                         <img src="{{asset($website->website_logo)}}" class="dark-logo" alt="Logo-Dark" />
+                         <img src="{{asset($website->website_logo)}}" class="light-logo" alt="Logo-light" />
                      </a>
                      <div class="d-none d-xl-flex align-items-center justify-content-center h-n80">
                          <img src="{{asset('back')}}/assets/images/backgrounds/login-security.svg" alt="modernize-img" class="img-fluid" width="500">
@@ -88,7 +88,6 @@
                      <div class="authentication-login min-vh-100 bg-body row justify-content-center align-items-center p-4">
                          <div class="auth-max-width col-sm-12 col-md-7 col-xl-9 px-4">
                              <h2 class="mb-1 fs-7 fw-bolder">Welcome to {{$website->name}}</h2>
-                             <p class="mb-7">Your Admin Dashboard</p>
                              <div class="position-relative text-center my-4">
                                  <p class="mb-0 fs-4 px-3 d-inline-block bg-body text-dark z-index-5 position-relative">or sign
                                      in
@@ -139,6 +138,31 @@
 
  <!-- solar icons -->
  <script src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.8/dist/iconify-icon.min.js"></script>
+
+ <script src="{{asset('/')}}iziToast/dist/js/iziToast.min.js"></script>
+ @if($errors->any())
+     @foreach($errors->all() as $error)
+         <script>
+             iziToast.error({
+                 title: '',
+                 position:'topRight',
+                 message: '{{$error}}',
+             });
+         </script>
+     @endforeach
+
+ @endif
+
+ @if(session()->get('success'))
+     <script>
+         iziToast.success({
+             title: '',
+             position:'topRight',
+             message: '{{session()->get('success')}}',
+         });
+
+     </script>
+ @endif
  </body>
 
  </html>

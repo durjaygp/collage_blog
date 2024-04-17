@@ -26,6 +26,7 @@ class User extends Authenticatable
         'image',
         'user_type_id',
         'nic',
+        'personal_details',
     ];
 
     /**

@@ -8,6 +8,7 @@ use App\Models\Category;
 use App\Models\Comment;
 use App\Models\FavoriteGames;
 use App\Models\Game;
+use App\Models\NewPages;
 use App\Models\Page;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
@@ -21,41 +22,36 @@ class WebController extends Controller
 {
     public function index()
     {
-        // Fetch the authenticated user
         $user = auth()->user();
         $who = $user->user_type_id;
         if ($who == 1){
             $blogsQuery = Blog::whereStatus(1)
                 ->wherePosition(1)
                 ->latest();
-
             $remainingBlogs = $blogsQuery->paginate(8);
-
             $featuredBlog = $blogsQuery->first();
-
             $slider = Blog::latest()
                 ->whereStatus(1)
                 ->wherePosition(0)
-                ->limit(4)
+                ->take(4)
                 ->get();
+            $editBlogs = Blog::whereStatus(1)->wherePosition(2)->limit(6)->get();
         }else{
-            $blogsQuery = Blog::where('type_id', $who) // Filter by user_type_id
+            $blogsQuery = Blog::where('type_id', $who)
             ->whereStatus(1)
                 ->wherePosition(1)
                 ->latest();
-
             $remainingBlogs = $blogsQuery->paginate(8);
-
             $featuredBlog = $blogsQuery->first();
-
             $slider = Blog::latest()
                 ->whereStatus(1)
                 ->where('type_id', $who)
                 ->wherePosition(0)
-                ->limit(4)
+                ->take(4)
                 ->get();
+            $editBlogs = Blog::whereStatus(1)->wherePosition(2)->limit(6)->where('type_id', $who)->get();
         }
-        return view('frontend.home.index', compact('slider', 'featuredBlog', 'remainingBlogs'));
+        return view('frontend.home.index', compact('slider','editBlogs', 'featuredBlog', 'remainingBlogs'));
     }
 
     public function blogDetails($slug){
@@ -64,11 +60,11 @@ class WebController extends Controller
         $user = auth()->user();
         $who = $user->user_type_id;
         if ($who == 1){
-            $relatedBlogs = Blog::whereStatus(1)->limit(4)->get();
+            $relatedBlogs = Blog::whereStatus(1)->take(4)->get();
         }else{
             $relatedBlogs = Blog::whereStatus(1)
                 ->where('type_id',$who)
-                ->limit(4)->get();
+                ->take(4)->get();
         }
 
 
@@ -81,8 +77,13 @@ class WebController extends Controller
         $category = Category::where('slug', $slug)->firstOrFail();
         $mainId = $category->id;
         $blogs = Blog::where('category_id', $mainId)->whereStatus(1)->paginate(10);
-
         return view('frontend.category.category', compact('category', 'blogs'));
+    }
+
+    public function details($slug)
+    {
+        $event = NewPages::where('slug',$slug)->first();
+        return view('frontend.events.details',compact('event'));
     }
 
     public function privacyPolicy(){

@@ -118,14 +118,14 @@
 {{--                            <span class="hide-menu">About Section</span>--}}
 {{--                        </a>--}}
 {{--                    </li>--}}
-{{--                    <li class="sidebar-item">--}}
-{{--                        <a class="sidebar-link" href="{{route('new-page.index')}}">--}}
-{{--                      <span>--}}
-{{--                        <i class="ti ti-new-section"></i>--}}
-{{--                      </span>--}}
-{{--                            <span class="hide-menu">Pages</span>--}}
-{{--                        </a>--}}
-{{--                    </li>--}}
+                    <li class="sidebar-item">
+                        <a class="sidebar-link" href="{{route('new-page.index')}}">
+                      <span>
+                        <i class="ti ti-new-section"></i>
+                      </span>
+                            <span class="hide-menu">Events</span>
+                        </a>
+                    </li>
 {{--                    <li class="sidebar-item">--}}
 {{--                        <a class="sidebar-link" href="{{route('newsletters.index')}}">--}}
 {{--                      <span>--}}
@@ -134,14 +134,14 @@
 {{--                            <span class="hide-menu">Subscriber</span>--}}
 {{--                        </a>--}}
 {{--                    </li>--}}
-{{--                    <li class="sidebar-item">--}}
-{{--                        <a class="sidebar-link" href="{{route('page.homeAbout')}}">--}}
-{{--                      <span>--}}
-{{--                        <i class="ti ti-user-bolt"></i>--}}
-{{--                      </span>--}}
-{{--                            <span class="hide-menu">About Section</span>--}}
-{{--                        </a>--}}
-{{--                    </li>--}}
+                    <li class="sidebar-item">
+                        <a class="sidebar-link" href="{{route('page.homeAbout')}}">
+                      <span>
+                        <i class="ti ti-user-bolt"></i>
+                      </span>
+                            <span class="hide-menu">About Section</span>
+                        </a>
+                    </li>
                     <li class="sidebar-item">
                         <a class="sidebar-link" href="{{route('page.homePrivacy')}}">
                       <span>

@@ -31,7 +31,12 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware(['auth', 'verified'])->group(function () {
+
     Route::get('/', [WebController::class,'index'])->name('home');
+
+    Route::get('/events', [EventsController::class,'index'])->name('home.event');
+    Route::get('/event-details/{slug}', [WebController::class,'details'])->name('event.details');
+
     Route::get('/blog/{slug}', [WebController::class,'blogDetails'])->name('home.blog');
     Route::get('/category/{slug}', [WebController::class,'category'])->name('home.category');
     Route::get('/about-me', [WebController::class,'about'])->name('home.about');
@@ -121,9 +126,6 @@ Route::middleware(['auth', 'isadmin'])->group(function(){
     Route::post('/summernote/upload', [AdminController::class, 'summernoteUpload'])->name('summernote.upload');
 
     Route::resource('user-type',UserTypeController::class);
-
-    Route::resource('admin-events',EventsController::class);
-
 
 });
 

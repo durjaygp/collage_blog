@@ -49,7 +49,7 @@ class NewPageController extends Controller
             $page->image = $this->saveImage($request);
         }
         $page->save();
-        return redirect()->route('new-page.index')->with('success','Page Created');
+        return redirect()->route('new-page.index')->with('success','Events Created');
 
     }
 
@@ -101,7 +101,7 @@ class NewPageController extends Controller
             $page->image = $this->saveImage($request);
         }
         $page->save();
-        return redirect()->route('new-page.index')->with('success','Page Created');
+        return redirect()->route('new-page.index')->with('success','Events Updated');
 
     }
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Events;
+use App\Models\NewPages;
 use Illuminate\Http\Request;
 
 class EventsController extends Controller
@@ -12,8 +13,10 @@ class EventsController extends Controller
      */
     public function index()
     {
-        return view('backEnd.')
+        $events = NewPages::whereStatus(1)->latest()->paginate(9);
+        return view('frontend.events.index',compact('events'));
     }
+
 
     /**
      * Show the form for creating a new resource.

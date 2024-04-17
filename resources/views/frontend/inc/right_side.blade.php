@@ -1,3 +1,22 @@
+@php
+    $aboutme = \App\Models\About::find(1);
+   $categories = \App\Models\Category::latest()
+    ->withCount(['blog' => function ($query) {
+        $query->where('status', 1);
+    }])->where('status', 1)->take(10)->get();
+
+$user_type_id = auth()->user()->user_type_id;
+
+      if ($user_type_id == 1){
+            $latBlogs = \App\Models\Blog::whereStatus(1)->take(5)->get();
+        }else{
+            $latBlogs = \App\Models\Blog::whereStatus(1)
+                ->where('type_id',$user_type_id)->take(5)->get();
+      }
+
+
+@endphp
+
 <div class="col-md-4 col-sm-12 col-xs-12 sticky_portion">
     <div id="secondary" class="widget-area">
         <div class="widget">
@@ -8,18 +27,15 @@
                 <!-- // widget-title -->
                 <div class="widget_content">
                     <div class="author_thumb">
-                        <img src="./assets/dist/img/author/1.jpg" alt="...">
+                        <img src="{{asset($aboutme->image)}}" alt="{{$aboutme->title}}">
                     </div>
                     <div class="author_name">
-                        <h4>Lia Andres</h4>
+                        <h4>{{$aboutme->title}}</h4>
                     </div>
                     <div class="author_bio">
-                        <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque ...</p>
-                        <a href="#">Read More</a>
+                        <p>{{$aboutme->description}}</p>
                     </div>
-                    <div class="author_signature">
-                        <img src="./assets/dist/img/author/signature.png" alt="...">
-                    </div>
+
                 </div>
                 <!-- // widget_content -->
             </div>
@@ -34,15 +50,9 @@
                 </div>
                 <!-- // widget-title -->
                 <ul>
-                    <li><a href="#">Lifestyle</a> (17)</li>
-                    <li><a href="#">Fashion</a> (20)</li>
-                    <li><a href="#">Health</a> (12)</li>
-                    <li><a href="#">Food</a> (6)</li>
-                    <li><a href="#">Travel</a> (55)</li>
-                    <li><a href="#">Style</a> (22)</li>
-                    <li><a href="#">Business</a> (29)</li>
-                    <li><a href="#">Photography</a> (4)</li>
-                    <li><a href="#">Military</a> (2)</li>
+                    @foreach($categories as $row)
+                        <li><a href="{{route('home.category',$row->slug)}}">{{$row->name}}</a> ({{$row->blog_count}})</li>
+                    @endforeach
                 </ul>
             </div>
         </div>
@@ -54,90 +64,29 @@
                 </div>
                 <!-- // widget-title -->
                 <div class="widget_content">
-                    <div class="box clearfix">
-                        <div class="left_box">
-                            <div class="post_thumb imghover">
-                                <a href="#"><img src="assets/dist/img/sidebar/1.jpeg" alt="...."></a>
-                            </div>
-                        </div>
-                        <!-- // left_box -->
-                        <div class="right_box">
-                            <div class="post_details">
-                                <h4><a href="#">Had a lovely unforgetable time with my husband</a></h4>
-                                <div class="meta">
-                                    <ul class="post_meta">
-                                        <li class="posted_date"><a href="#">24 April 2018</a></li>
-                                    </ul>
+                    @foreach($latBlogs as $row)
+                        <div class="box clearfix">
+                            <div class="left_box">
+                                <div class="post_thumb imghover">
+                                    <a href="{{route('home.blog',$row->slug)}}"><img src="{{asset($row->image)}}" alt="{{$row->name}}"></a>
                                 </div>
                             </div>
-                            <!-- // post_details -->
-                        </div>
-                        <!-- // right_box -->
-                    </div>
-                    <!-- // box -->
-                    <div class="box clearfix">
-                        <div class="left_box">
-                            <div class="post_thumb imghover">
-                                <a href="#"><img src="assets/dist/img/sidebar/2.jpeg" alt="...."></a>
-                            </div>
-                        </div>
-                        <!-- // left_box -->
-                        <div class="right_box">
-                            <div class="post_details">
-                                <h4><a href="#">My brother gave me a suprise gift &amp; I loved that</a></h4>
-                                <div class="meta">
-                                    <ul class="post_meta">
-                                        <li class="posted_date"><a href="#">22 April 2018</a></li>
-                                    </ul>
+                            <!-- // left_box -->
+                            <div class="right_box">
+                                <div class="post_details">
+                                    <h4><a href="{{route('home.blog',$row->slug)}}">{{$row->name}}</a></h4>
+                                    <div class="meta">
+                                        <ul class="post_meta">
+                                            <li class="posted_date"><a href="{{route('home.blog',$row->slug)}}">{{$row->created_at->format('Y M d')}}</a></li>
+                                        </ul>
+                                    </div>
                                 </div>
+                                <!-- // post_details -->
                             </div>
-                            <!-- // post_details -->
+                            <!-- // right_box -->
                         </div>
-                        <!-- // right_box -->
-                    </div>
-                    <!-- // box -->
-                    <div class="box clearfix">
-                        <div class="left_box">
-                            <div class="post_thumb imghover">
-                                <a href="#"><img src="assets/dist/img/sidebar/3.jpeg" alt="...."></a>
-                            </div>
-                        </div>
-                        <!-- // left_box -->
-                        <div class="right_box">
-                            <div class="post_details">
-                                <h4><a href="#">Busy around weekend to decorate my living room</a></h4>
-                                <div class="meta">
-                                    <ul class="post_meta">
-                                        <li class="posted_date"><a href="#">18 April 2018</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <!-- // post_details -->
-                        </div>
-                        <!-- // right_box -->
-                    </div>
-                    <!-- // box -->
-                    <div class="box clearfix">
-                        <div class="left_box">
-                            <div class="post_thumb imghover">
-                                <a href="#"><img src="assets/dist/img/sidebar/4.jpeg" alt="...."></a>
-                            </div>
-                        </div>
-                        <!-- // left_box -->
-                        <div class="right_box">
-                            <div class="post_details">
-                                <h4><a href="#">Chekout how I did this suprising decoration alone</a></h4>
-                                <div class="meta">
-                                    <ul class="post_meta">
-                                        <li class="posted_date"><a href="#">16 April 2018</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <!-- // post_details -->
-                        </div>
-                        <!-- // right_box -->
-                    </div>
-                    <!-- // box -->
+                    @endforeach
+
                 </div>
                 <!-- // widget_content -->
             </div>

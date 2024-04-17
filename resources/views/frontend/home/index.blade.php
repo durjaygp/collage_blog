@@ -12,7 +12,7 @@
                             <div class="card_content">
                                 <div class="entry_cats">
                                     <ul class="categories">
-                                        <li><a href="#">{{$row->category->name}}</a></li>
+                                        <li><a href="{{route('home.blog',$row->slug)}}">{{$row->category->name}}</a></li>
                                     </ul>
                                 </div>
                                 <!-- // entry_cats -->
@@ -21,7 +21,7 @@
                                 </div>
                                 <!-- // title -->
                                 <div class="the_permalink">
-                                    <a class="btn_general" href="#">Read More</a>
+                                    <a class="btn_general" href="{{route('home.blog',$row->slug)}}">Read More</a>
                                 </div>
                                 <!-- // the_permalink -->
                             </div>
@@ -39,79 +39,23 @@
 
     <!-- // vb_banner -->
     <div class="vb_container">
-        <div class="vb_featured featured_style_1">
-            <div class="row">
-                <div class="col-md-4 col-sm-4 col-xs-12">
-                    <div class="card">
-                        <div class="post_thumb">
-                            <img src="img/1.jpg" alt="...">
-                            <div class="card_content">
-                                <div class="the_permalink">
-                                    <a href="#">About Me</a>
-                                </div>
-                                <!-- // the_permalink -->
-                            </div>
-                            <!-- // card_content -->
-                        </div>
-                        <!-- // post_thumb -->
-                    </div>
-                    <!-- // card -->
-                </div>
-                <!-- // col -->
-                <div class="col-md-4 col-sm-4 col-xs-12">
-                    <div class="card">
-                        <div class="post_thumb">
-                            <img src="./assets/dist/img/featured/one/2.jpg" alt="...">
-                            <div class="card_content">
-                                <div class="the_permalink">
-                                    <a href="#">Style</a>
-                                </div>
-                                <!-- // the_permalink -->
-                            </div>
-                            <!-- // card_content -->
-                        </div>
-                        <!-- // post_thumb -->
-                    </div>
-                    <!-- // card -->
-                </div>
-                <!-- // col -->
-                <div class="col-md-4 col-sm-4 col-xs-12">
-                    <div class="card">
-                        <div class="post_thumb">
-                            <img src="./assets/dist/img/featured/one/3.jpg" alt="...">
-                            <div class="card_content">
-                                <div class="the_permalink">
-                                    <a href="#">Travel</a>
-                                </div>
-                                <!-- // the_permalink -->
-                            </div>
-                            <!-- // card_content -->
-                        </div>
-                        <!-- // post_thumb -->
-                    </div>
-                    <!-- // card -->
-                </div>
-                <!-- // col -->
-            </div>
-            <!-- // row -->
-        </div>
-        <!-- // vb_featured -->
         <div class="mid_portion_wrap frontpage_mid_wrap">
             <div class="row">
-                <div class="col-md-8 col-sm-12 col-xs-12 sticky_portion">
+                <div class="col-md-8 sticky_portion">
                     <div id="primary" class="content-area">
                         <main id="main" class="site-main">
                             <div class="recent_posts_holder">
 
+                                @if($featuredBlog)
                                     <article class="box first_article">
                                         <div class="top_box_content">
                                             <div class="entry_cats">
                                                 <ul class="categories">
-                                                    <li><a href="#">{{$featuredBlog->category->name}}</a></li>
+                                                    <li><a href="{{route('home.blog',$featuredBlog->slug)}}">{{$featuredBlog->category->name}}</a></li>
                                                 </ul>
                                             </div>
                                             <div class="post_title">
-                                                <h3><a href="#">{{$featuredBlog->name}}</a></h3>
+                                                <h3><a href="{{route('home.blog',$featuredBlog->slug)}}">{{$featuredBlog->name}}</a></h3>
                                             </div>
                                             <div class="meta">
                                                 <ul class="post_meta">
@@ -122,7 +66,7 @@
                                         </div>
                                         <!-- // top_box_content -->
                                         <div class="post-thumb imghover">
-                                            <a href="#"><img src="{{asset($featuredBlog->image)}}" alt="..."></a>
+                                            <a href="{{route('home.blog',$featuredBlog->slug)}}"><img src="{{asset($featuredBlog->image)}}" alt="..."></a>
                                         </div>
                                         <!-- // post-media -->
                                         <div class="btm_box_content">
@@ -131,7 +75,7 @@
                                             </div>
                                             <!-- // excerpt -->
                                             <div class="the_permalink">
-                                                <a href="#" class="btn_general">Continue Reading</a>
+                                                <a href="{{route('home.blog',$featuredBlog->slug)}}" class="btn_general">Continue Reading</a>
                                             </div>
                                             <!-- // the_permalink -->
                                             <div class="extra">
@@ -160,6 +104,10 @@
                                         </div>
                                         <!-- // btm_box_content -->
                                     </article>
+                                @else
+                                    <h2>No Posts Right now</h2>
+                                @endif
+
 
                                 <div class="vb_rp_grid_style vb_post_formates">
                                     <div class="row">
@@ -167,7 +115,7 @@
                                             <div class="col-md-6 col-sm-6 col-xs-12">
                                                 <div class="card">
                                                     <div class="post_media standard imghover">
-                                                        <a href="#"><img src="{{asset($row->image)}}" alt="..."></a>
+                                                        <a href="{{route('home.blog',$row->slug)}}"><img src="{{asset($row->image)}}" alt="..."></a>
                                                     </div>
                                                     <!-- // post_media -->
                                                     <div class="card_content">
@@ -177,7 +125,7 @@
                                                             </ul>
                                                         </div>
                                                         <div class="post_title">
-                                                            <h3><a href="#">{{$row->name}}</a></h3>
+                                                            <h3><a href="{{route('home.blog',$row->slug)}}">{{$row->name}}</a></h3>
                                                         </div>
                                                         <div class="excerpt">
                                                             <p>{{\Illuminate\Support\Str::limit($row->description,154)}}</p>
@@ -248,7 +196,7 @@
                     <div class="col-md-4 col-sm-4 col-xs-12">
                         <div class="card">
                             <div class="post_media imghover">
-                                <a href="#"><img src="{{asset($row->image)}}" alt="..."></a>
+                                <a href="{{route('home.blog',$row->slug)}}"><img src="{{asset($row->image)}}" alt="..."></a>
                             </div>
                             <div class="card_content">
                                 <div class="entry_cats">
@@ -257,7 +205,7 @@
                                     </ul>
                                 </div>
                                 <div class="post_title">
-                                    <h3><a href="#">{{$row->name}}</a></h3>
+                                    <h3><a href="{{route('home.blog',$row->slug)}}">{{$row->name}}</a></h3>
                                 </div>
                                 <div class="excerpt">
                                     <p>{{\Illuminate\Support\Str::limit($row->description,85)}} ...</p>

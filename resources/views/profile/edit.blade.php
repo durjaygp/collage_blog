@@ -64,7 +64,12 @@
                                     <input type="file" name="image" class="form-control" id="exampleInputtext">
                                 </div>
                             </div>
-
+                            <div class="col-lg-12">
+                                <div class="mb-4">
+                                    <label for="exampleInputPassword1" class="form-label fw-semibold">Personal Details</label>
+                                    <textarea name="personal_details" class="form-control" id="" cols="5" rows="5">{{$person->personal_details}}</textarea>
+                                </div>
+                            </div>
 
                             <div class="col-12">
                                 <div class="d-flex align-items-center gap-3">

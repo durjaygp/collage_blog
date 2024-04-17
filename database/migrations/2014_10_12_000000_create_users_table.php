@@ -18,6 +18,7 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->text('image')->nullable();
+            $table->longText('personal_details')->nullable();
             $table->boolean('status')->default(1);
             $table->unsignedBigInteger('role_id');
             $table->foreign('role_id')->references('id')->on('roles')->default(1)->nullable();

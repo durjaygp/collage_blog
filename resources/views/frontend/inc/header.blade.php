@@ -11,7 +11,7 @@
                         <div class="secondary_nav">
                             <ul>
                                 @foreach($categoryHeaders as $row)
-                                    <li><a href="#">{{$row->name}}</a></li>
+                                    <li><a href="{{route('home.category',$row->slug)}}">{{$row->name}}</a></li>
                                 @endforeach
                             </ul>
                         </div>
@@ -47,7 +47,7 @@
         <div class="vb_container">
             <div class="site_idty_entry">
                 <div class="logo">
-                    <a href="index.html"><img src="{{asset('homePage')}}/img/logo_darkbig.png" alt="..."></a>
+                    <a href="{{route('home')}}"><img src="{{asset($website->website_logo)}}" alt="..."></a>
                 </div>
                 <!-- // logo -->
             </div>
@@ -60,8 +60,7 @@
         <div class="vb_container">
             <div class="primary_navigation has_search">
                 <ul>
-                    <li><a href="{{route('home')}}">Home</a>
-                    </li>
+                    <li><a href="{{route('home')}}">Home</a></li>
                     <li><a href="#">Category</a>
                         <ul>
                             @foreach($categoryMenu as $row)
@@ -69,12 +68,7 @@
                             @endforeach
                         </ul>
                     </li>
-                    <li><a href="#">Archive Pages</a>
-                        <ul>
-                            <li><a href="archive.html">Archive I</a></li>
-                            <li><a href="archive-2.html">Archive II</a></li>
-                        </ul>
-                    </li>
+                    <li><a href="{{route('home.event')}}">Events</a></li>
                     @auth
                         <li><a href="#"> {{auth()->user()->name}} </a>
                             <ul>
