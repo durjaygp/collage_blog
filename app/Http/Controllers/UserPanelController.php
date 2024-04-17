@@ -70,6 +70,7 @@ class UserPanelController extends Controller
         $blog->category_id = $request->category_id;
         $blog->main_content = $request->content;
         $blog->status = 3;
+        $blog->position = 1;
         $blog->type = 'user';
         $blog->seo_description = $request->seo_description;
         $blog->seo_tags = $request->seo_tags;
@@ -154,7 +155,7 @@ class UserPanelController extends Controller
             $blog->image = $this->saveImage($request);
         }
         $blog->save();
-        return redirect()->route('blog.list')->with('success', 'Update Successfully');
+        return redirect()->back()->with('success', 'Update Successfully');
     }
 
 }

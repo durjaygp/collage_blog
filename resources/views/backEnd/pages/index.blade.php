@@ -1,5 +1,5 @@
 @extends('backEnd.master')
-@section('title','Pages')
+@section('title','Events')
 @section('content')
     <div class="container-fluid">
         <div class="overflow-hidden shadow-none card bg-light-info position-relative">
@@ -28,11 +28,11 @@
                 <div class="card-header">
                     <div class="row">
                         <div class="col-md-4 ">
-                            <h2>Page List</h2>
+                            <h2>Events List</h2>
                         </div>
                         <div class="mt-3 col-md-8 text-end d-flex justify-content-md-end justify-content-center mt-md-0">
                             <a href="{{route('new-page.create')}}" class="btn btn-info d-flex align-items-center">
-                                <i class="text-white ti ti-new-section me-1 fs-5"></i> New Page
+                                <i class="text-white ti ti-new-section me-1 fs-5"></i> New Events
                             </a>
                         </div>
                     </div>
@@ -48,9 +48,9 @@
                                     <tr>
                                         <th>#</th>
                                         <th>Image</th>
-                                        <th>Page Title</th>
+                                        <th>Title</th>
+                                        <th>Date</th>
                                         <th>Description</th>
-                                        <th>Is featured</th>
                                         <th>Status</th>
                                         <th>Action</th>
                                     </tr>
@@ -63,14 +63,8 @@
                                         <td>{{$loop->iteration}}</td>
                                         <td><img src="{{asset($row->image)}}" alt="" class="img-fluid"></td>
                                         <td>{{$row->title}}</td>
+                                        <td>{{$row->date}}</td>
                                         <td>{{\Illuminate\Support\Str::limit($row->description,20)}}</td>
-                                        <td>
-                                            @if($row->is_featured == 1)
-                                                <span class="badge bg-secondary">Featured</span>
-                                            @elseif($row->is_featured == 2)
-                                                <span class="badge bg-danger">Not featured</span>
-                                            @endif
-                                        </td>
                                         <td>
                                             @if($row->status == 1)
                                                 <span class="badge bg-secondary">Active</span>

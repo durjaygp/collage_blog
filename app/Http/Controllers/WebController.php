@@ -88,7 +88,7 @@ class WebController extends Controller
 
     public function privacyPolicy(){
         $privacy = Page::find(1);
-        return view('frontEnd_old.pages.privacy',compact('privacy'));
+        return view('frontend.pages.privacy',compact('privacy'));
     }
 
 
@@ -100,10 +100,9 @@ class WebController extends Controller
         $blog = Blog::where('name', 'like', $search)
             ->orWhere('description', 'like', $search)
             ->orWhere('main_content', 'like', $search)
-            ->orWhere('ingredients', 'like', $search)
-            ->get();
+            ->paginate(9);
 
-        return view('frontEnd_old.blog.search', compact('blog', 'cleanedSearch'));
+        return view('frontEnd.pages.search', compact('blog', 'cleanedSearch'));
     }
 
     public function siteMap(): Response // Update the type hint to Illuminate\Http\Response

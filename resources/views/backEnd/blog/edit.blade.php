@@ -118,7 +118,7 @@
                                     <label for="Featured" class="form-label fw-semibold">User Type</label>
                                     <select name="type_id" id="Featured" class="form-select" required="">
                                         @foreach($types as $row)
-                                            <option value="{{$row->id}}" @if($blog->position == $row->id) selected @endif>{{$row->title}}</option>
+                                            <option value="{{$row->id}}" @if($blog->type_id == $row->id) selected @endif>{{$row->title}}</option>
                                         @endforeach
 
                                     </select>

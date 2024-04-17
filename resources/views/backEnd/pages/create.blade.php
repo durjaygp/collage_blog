@@ -1,5 +1,5 @@
 @extends('backEnd.master')
-@section('title','Create Pages')
+@section('title','Create Events')
 @section('content')
     <div class="container-fluid">
         <div class="overflow-hidden shadow-none card bg-light-info position-relative">
@@ -37,10 +37,16 @@
                     <form method="post" action="{{route('new-page.store')}}" enctype="multipart/form-data">
                         @csrf
                         <div class="row">
-                            <div class="col-lg-12">
+                            <div class="col-lg-8">
                                 <div class="mb-4">
-                                    <label for="exampleInputPassword1" class="form-label fw-semibold">Page Title</label>
+                                    <label for="exampleInputPassword1" class="form-label fw-semibold">Event Title</label>
                                     <input type="text" name="title" class="form-control" placeholder="Page Title" >
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="mb-4">
+                                    <label for="exampleInputPassword1" class="form-label fw-semibold">Event Date</label>
+                                    <input type="date" name="date" class="form-control" placeholder="" >
                                 </div>
                             </div>
                             <div class="col-lg-12">
@@ -72,18 +78,6 @@
                                                 <option value="1">Active</option>
                                                 <option value="2">Inactive</option>
                                             </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-
-                                            <div class="mb-4">
-                                                <label for="exampleInputPassword1" class="form-label fw-semibold">Is Featured</label>
-                                                <select name="is_featured" class="form-select">
-                                                    <option>Select</option>
-                                                    <option value="1">Featured</option>
-                                                    <option value="2">Not Featured</option>
-                                                </select>
-
                                         </div>
                                     </div>
                                 </div>

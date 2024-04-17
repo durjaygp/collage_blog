@@ -1,5 +1,5 @@
 @extends('backEnd.master')
-@section('title','Update Pages')
+@section('title','Update Events')
 @section('content')
     <div class="container-fluid">
         <div class="overflow-hidden shadow-none card bg-light-info position-relative">
@@ -38,10 +38,16 @@
                         @csrf
                         @method('put')
                         <div class="row">
-                            <div class="col-lg-12">
+                            <div class="col-lg-8">
                                 <div class="mb-4">
-                                    <label for="exampleInputPassword1" class="form-label fw-semibold">Page Title</label>
-                                    <input type="text" name="title" class="form-control" placeholder="Page Title" value="{{$row->title}}">
+                                    <label for="exampleInputPassword1" class="form-label fw-semibold">Event Title</label>
+                                    <input type="text" name="title" class="form-control" placeholder="Event Title" value="{{$row->title}}">
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="mb-4">
+                                    <label for="exampleInputPassword1" class="form-label fw-semibold">Events Date</label>
+                                    <input type="date" name="date" class="form-control" placeholder="" value="{{$row->date}}">
                                 </div>
                             </div>
                             <div class="col-lg-12">
@@ -64,7 +70,7 @@
                             </div>
                             <div class="col-lg-12">
                                 <div class="mb-4">
-                                    <label for="exampleInputPassword1" class="form-label fw-semibold">Page Content</label>
+                                    <label for="exampleInputPassword1" class="form-label fw-semibold">Event Content</label>
                                     <textarea name="main_content" id="summernote" cols="10" rows="5" class="form-control" placeholder="Write a short Description">{{$row->main_content}}</textarea>
 
                                 </div>
@@ -79,18 +85,6 @@
                                                 <option value="1" @selected(old('status', $row->status) == 1)>Active</option>
                                                 <option value="2" @selected(old('status', $row->status) == 2)>Inactive</option>
                                             </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-
-                                        <div class="mb-4">
-                                            <label for="exampleInputPassword1" class="form-label fw-semibold">Is Featured</label>
-                                            <select name="is_featured" class="form-select">
-                                                <option>Select</option>
-                                                <option value="1" @selected(old('is_featured', $row->is_featured) == 1)>Featured</option>
-                                                <option value="2" @selected(old('is_featured', $row->is_featured) == 2)>Not Featured</option>
-                                            </select>
-
                                         </div>
                                     </div>
                                 </div>

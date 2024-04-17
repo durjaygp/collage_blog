@@ -43,13 +43,9 @@
                                 <div class="post_sharing">
                                     <span>Share this post</span>
                                     <ul class="social_icons_list">
-                                        <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-vk" aria-hidden="true"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-youtube" aria-hidden="true"></i></a></li>
+                                        <li><a href="https://www.facebook.com/sharer/sharer.php?u={{ url('/') }}/blog/{{ $blog->slug }}"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                                        <li><a href="https://twitter.com/intent/tweet?text={{ url('/') }}/blog/{{ $blog->slug }}"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                                        <li><a href="https://www.linkedin.com/sharing/share-offsite?url={{ url('/') }}/blog/{{ $blog->slug }}"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
                                     </ul>
                                 </div>
                                 <!-- // social_sharing -->
@@ -57,7 +53,7 @@
                                     <div class="row">
                                         <div class="col-md-3 col-sm-3 col-xs-12">
                                             <div class="author_thumb">
-                                                <img src="./assets/dist/img/author/1.jpg" alt="...">
+                                                <img src="{{asset($blog->user->image ?? "back/assets/images/profile/user-1.jpg")}}" alt="...">
                                             </div>
                                             <!-- // author_thumb -->
                                         </div>
@@ -65,25 +61,12 @@
                                         <div class="col-md-9 col-sm-9 col-xs-12">
                                             <div class="author_details">
                                                 <div class="author_name">
-                                                    <h3>Lia Andres</h3>
+                                                    <h3>{{$blog->user->name}}</h3>
                                                 </div>
                                                 <!-- // author_name -->
                                                 <div class="author_desc">
-                                                    <p>Lia is a WordPress lover, digital marketing, SEO, and blogging enthusiast. She loves writing artiles, blog posts and meeting new peoples around the world.</p>
+                                                    <p>{{$blog->user->personal_details}}</p>
                                                 </div>
-                                                <!-- // author_desc -->
-                                                <div class="author_social">
-                                                    <ul class="social_icons_list">
-                                                        <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                                                        <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                                                        <li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
-                                                        <li><a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
-                                                        <li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
-                                                        <li><a href="#"><i class="fa fa-vk" aria-hidden="true"></i></a></li>
-                                                        <li><a href="#"><i class="fa fa-youtube" aria-hidden="true"></i></a></li>
-                                                    </ul>
-                                                </div>
-                                                <!-- // author_social -->
                                             </div>
                                             <!-- // author_details -->
                                         </div>
@@ -91,7 +74,95 @@
                                     </div>
                                     <!-- // row -->
                                 </div>
-                                <!-- // author_box -->
+
+                                <style>
+                                    .author_box .form-group textarea {
+                                        width: 100%;
+                                        box-sizing: border-box; /* Ensure padding and border are included in the width */
+                                    }
+                                    .author_box label {
+                                        font-weight: bold;
+                                    }
+
+                                    .author_box textarea {
+                                        width: 100%;
+                                        padding: 10px;
+                                        border: 1px solid #ccc;
+                                        border-radius: 5px;
+                                        resize: vertical; /* Allow vertical resizing */
+                                    }
+
+                                    .author_box .comment-btn {
+                                        background-color: #4CAF50;
+                                        color: white;
+                                        padding: 10px 20px;
+                                        border: none;
+                                        border-radius: 5px;
+                                        cursor: pointer;
+                                    }
+
+                                    .author_box .comment-btn:hover {
+                                        background-color: #45a049;
+                                    }
+                                    @media only screen and (max-width: 600px) {
+                                        .author_thumb img.comment-image {
+                                            max-width: 50px; /* Adjust as needed */
+                                        }
+                                    }
+                                </style>
+                                <div class="author_box">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <form action="{{route('comment.save')}}" method="post">
+                                                @csrf
+                                                <div class="form-group">
+                                                    <label for="comment">Your Comment:</label>
+                                                    <br>
+                                                    <textarea name="comment" placeholder="Please write your comment" rows="5"></textarea>
+                                                    <input type="hidden" name="id" value="{{auth()->user()->id}}">
+                                                    <input type="hidden" name="blog_id" value="{{$blog->id}}">
+                                                </div>
+                                                <button type="submit" class="comment-btn">Submit</button>
+                                            </form>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+
+
+                                @foreach($comments as $row)
+                                    <div class="author_box_comm">
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <div class="author_thumb">
+                                                    <img src="{{asset($row->user->image ?? "back/assets/images/profile/user-1.jpg")}}" class="comment-image" alt="">
+                                                </div>
+                                                <!-- // author_thumb -->
+                                            </div>
+                                            <!-- // col -->
+                                            <div class="col-md-9">
+                                                <div class="author_details">
+                                                    <div class="author_name">
+                                                        <h3>{{$row->user->name}}</h3>
+                                                        <p>{{$row->created_at->diffForHumans()}}</p>
+                                                    </div>
+                                                    <!-- // author_name -->
+                                                    <div class="author_desc">
+                                                        <p>{{$row->comment}}</p>
+                                                    </div>
+                                                </div>
+                                                <!-- // author_details -->
+                                            </div>
+                                            <!-- // col -->
+                                        </div>
+                                        <!-- // row -->
+                                    </div>
+                                @endforeach
+
+
+
+
                                 <section class="related_posts">
                                     <div class="section_title">
                                         <span>You May Also Like</span>
@@ -143,3 +214,5 @@
         <!-- // mid_portion_wrap -->
     </div>
 @endsection
+
+

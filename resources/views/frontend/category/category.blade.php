@@ -28,7 +28,7 @@
                                                 <div class="row">
                                                     <div class="col left_col">
                                                         <div class="post_thumb imghover">
-                                                            <a href="{{route('event.details',$row->slug)}}"><img src="{{asset($row->image)}}" alt="{{$row->name}}"></a>
+                                                            <a href="{{route('home.blog',$row->slug)}}"><img src="{{asset($row->image)}}" alt="{{$row->name}}"></a>
                                                         </div>
                                                         <!-- // post_thumb -->
                                                     </div>

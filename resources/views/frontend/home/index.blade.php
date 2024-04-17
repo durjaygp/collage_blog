@@ -112,7 +112,7 @@
                                 <div class="vb_rp_grid_style vb_post_formates">
                                     <div class="row">
                                         @foreach($remainingBlogs as  $row)
-                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <div class="col-md-6">
                                                 <div class="card">
                                                     <div class="post_media standard imghover">
                                                         <a href="{{route('home.blog',$row->slug)}}"><img src="{{asset($row->image)}}" alt="..."></a>

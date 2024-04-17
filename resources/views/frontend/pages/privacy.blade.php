@@ -1,6 +1,6 @@
 @extends('frontend.master')
 @section('title')
-    {{$event->title}}
+    {{$privacy->page_title}}
 @endsection
 @section('content')
     <div class="vb_container">
@@ -8,7 +8,7 @@
             <div class="vb_breadcrumb breadtrails_style3">
                 <ul>
                     <li><a href="#">Home</a></li>
-                    <li><a href="#">{{$event->title}}</a></li>
+                    <li><a href="#">{{$privacy->page_title}}</a></li>
                 </ul>
             </div>
             <!-- // vb_breadcrumb -->
@@ -18,26 +18,23 @@
                         <main id="main" class="site-main">
                             <div class="postpage_entry">
                                 <div class="post_title">
-                                    <h2>{{$event->title}}</h2>
+                                    <h2>{{$privacy->page_title}}</h2>
                                 </div>
                                 <div class="meta">
                                     <ul class="post_meta">
-                                        <li class="posted_date">Posted on : <a href="#">{{$event->created_at->format('Y M d')}}</a></li>
+                                        <li class="posted_date">Posted on : <a href="#">{{$privacy->created_at->format('Y M d')}}</a></li>
                                     </ul>
                                 </div>
                                 <div class="post_thumb post_media">
-                                    <img src="{{asset($event->image)}}" alt="{{$event->title}}">
+                                    <img src="{{asset($privacy->image)}}" alt="{{$privacy->page_title}}">
                                 </div>
                                 <div class="editor_contents">
                                     <p>
-                                        Event Date: {{$event->date}}
-                                    </p>
-                                    <p>
-                                        {{ strip_tags($event->description) }}
+                                        {{ strip_tags($privacy->description) }}
                                     </p>
 
                                     <p>
-                                        {{ strip_tags($event->main_content) }}
+                                        {{ strip_tags($privacy->content) }}
                                     </p>
 
 

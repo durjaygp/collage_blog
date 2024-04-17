@@ -29,12 +29,14 @@
                 <div class="col right_col">
                     <div class="footer_nav">
                         @php
-                            $category = \App\Models\Category::all();
+                            $category = \App\Models\Category::latest()->take(4)->get();
                         @endphp
                         <ul>
+                            <li><a href="{{route('privacy-policy')}}">Privacy Policy</a></li>
                             @foreach($category as $row)
                                 <li><a href="#">{{$row->name}}</a></li>
                             @endforeach
+
                         </ul>
                     </div>
                     <!-- // copyright -->

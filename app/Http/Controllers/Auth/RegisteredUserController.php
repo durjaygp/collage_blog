@@ -31,8 +31,7 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-
-        $validator = Validator::make($request->all(), [
+        $baseRules = [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class,
                 function ($attribute, $value, $fail) {
@@ -43,7 +42,15 @@ class RegisteredUserController extends Controller
             ],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
             'nic' => ['nullable', 'max:12'],
-        ]);
+        ];
+
+        // Check if user_type_id is 2, then remove the custom email validation rule
+        if ($request->user_type_id == 2) {
+            unset($baseRules['email']);
+        }
+
+        $validator = Validator::make($request->all(), $baseRules);
+
 
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();

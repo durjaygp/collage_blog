@@ -69,11 +69,12 @@
                         </ul>
                     </li>
                     <li><a href="{{route('home.event')}}">Events</a></li>
+                    <li><a href="{{route('home.alumni')}}">Alumni</a></li>
                     @auth
                         <li><a href="#"> {{auth()->user()->name}} </a>
                             <ul>
                                 @if(auth()->user()->role->name ==='user')
-                                <li><a href="{{route('profile.edit')}}">My Profile</a></li>
+                                <li><a href="{{route('dashboard')}}">My Profile</a></li>
                                 @else
                                     <li><a href="{{route('admin.index')}}">Admin Panel</a></li>
                                 @endif
@@ -95,7 +96,7 @@
             </div>
             <!-- // primary_navigation -->
             <div class="header_search">
-                <form class="clearfix">
+                <form class="clearfix" method="get" action="{{route('search.blog')}}">
                     <input type="search" name="search" placeholder="Type Something ...">
                     <input type="submit" value="Search">
                 </form>

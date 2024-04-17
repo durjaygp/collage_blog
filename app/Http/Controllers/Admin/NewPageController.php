@@ -43,8 +43,8 @@ class NewPageController extends Controller
         $page->slug = Str::slug($request->title,'-');
         $page->description = $request->description;
         $page->main_content = $request->main_content;
+        $page->date = $request->date;
         $page->status = $request->status;
-        $page->is_featured = $request->is_featured;
         if ($request->file('image')) {
             $page->image = $this->saveImage($request);
         }
@@ -95,8 +95,8 @@ class NewPageController extends Controller
         $page->slug = Str::slug($request->title,'-');
         $page->description = $request->description;
         $page->main_content = $request->main_content;
+        $page->date = $request->date;
         $page->status = $request->status;
-        $page->is_featured = $request->is_featured;
         if ($request->file('image')) {
             $page->image = $this->saveImage($request);
         }
