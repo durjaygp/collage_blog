@@ -12,7 +12,7 @@
                             <div class="card_content">
                                 <div class="entry_cats">
                                     <ul class="categories">
-                                        <li><a href="{{route('home.blog',$row->slug)}}">{{$row->category->name}}</a></li>
+                                        <li><a href="{{route('home.category',$row->category->slug)}}">{{$row->category->name}}</a></li>
                                     </ul>
                                 </div>
                                 <!-- // entry_cats -->
@@ -90,11 +90,9 @@
                                                     <div class="col">
                                                         <div class="social_sharing">
                                                             <ul class="social_icons_list">
-                                                                <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                                                                <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                                                                <li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
-                                                                <li><a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
-                                                                <li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+                                                                <li><a href="https://www.facebook.com/sharer/sharer.php?u={{ url('/') }}/blog/{{ $featuredBlog->slug }}"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                                                                <li><a href="https://twitter.com/intent/tweet?text={{ url('/') }}/blog/{{ $featuredBlog->slug }}"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                                                                <li><a href="https://www.linkedin.com/sharing/share-offsite?url={{ url('/') }}/blog/{{ $featuredBlog->slug }}"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
                                                             </ul>
                                                         </div>
                                                     </div>
@@ -121,7 +119,7 @@
                                                     <div class="card_content">
                                                         <div class="entry_cats">
                                                             <ul class="categories">
-                                                                <li><a href="#">{{ $row->category->name }}</a></li>
+                                                                <li><a href="{{route('home.category',$row->category->slug)}}">{{ $row->category->name }}</a></li>
                                                             </ul>
                                                         </div>
                                                         <div class="post_title">
@@ -201,7 +199,7 @@
                             <div class="card_content">
                                 <div class="entry_cats">
                                     <ul class="categories">
-                                        <li><a href="#">{{$row->category->name}}</a></li>
+                                        <li><a href="{{route('home.category',$row->category->slug)}}">{{$row->category->name}}</a></li>
                                     </ul>
                                 </div>
                                 <div class="post_title">

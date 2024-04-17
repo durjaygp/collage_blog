@@ -29,6 +29,8 @@
                                                         <!-- // post_media -->
                                                         <div class="card_content">
                                                             <div class="post_title">
+                                                                <p>Event Date: {{ date('j M Y', strtotime($row->date)) }}
+                                                                </p>
                                                                 <h3><a href="{{route('event.details',$row->slug)}}">{{$row->title}}</a></h3>
                                                             </div>
                                                             <div class="excerpt">

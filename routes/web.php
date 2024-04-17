@@ -17,7 +17,7 @@ use App\Http\Controllers\SocialController;
 use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\UserTypeController;
 use App\Http\Controllers\EventsController;
-
+use App\Http\Controllers\BlogLikeController;
 
 
 
@@ -33,6 +33,9 @@ Route::get('/dashboard', function () {
 Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::get('/', [WebController::class,'index'])->name('home');
+
+    Route::resource('post-like',BlogLikeController::class);
+    Route::post('like-remove',[BlogLikeController::class,'likeRemove'])->name('like.remove');
 
     Route::get('/events', [EventsController::class,'index'])->name('home.event');
     Route::get('/alumni', [EventsController::class,'alumni'])->name('home.alumni');
@@ -129,6 +132,9 @@ Route::middleware(['auth', 'isadmin'])->group(function(){
     Route::resource('user-type',UserTypeController::class);
 
     Route::get('/admin/user-list',[DashboardController::class,'userList'])->name('admin.user-list');
+    Route::get('/create-admin',[DashboardController::class,'createAdmin'])->name('create-admin');
+    Route::get('/delete-user/{id}',[DashboardController::class,'userDelete'])->name('user-delete');
+    Route::post('/save-admin',[DashboardController::class,'saveAdmin'])->name('save-admin');
 
 });
 

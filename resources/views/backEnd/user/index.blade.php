@@ -30,13 +30,24 @@
                         <div class="col-md-4 ">
                             <h2>User List</h2>
                         </div>
-{{--                        <div class="col-md-8 text-end d-flex justify-content-md-end justify-content-center mt-3 mt-md-0">--}}
-{{--                            <a href="{{route('blog.create')}}" class="btn btn-info d-flex align-items-center">--}}
-{{--                                <i class="ti ti-new-section text-white me-1 fs-5"></i> Add Blog--}}
-{{--                            </a>--}}
-{{--                        </div>--}}
+                        <div class="col-md-8 text-end d-flex justify-content-md-end justify-content-center mt-3 mt-md-0">
+                            <a href="{{route('create-admin')}}" class="btn btn-info d-flex align-items-center">
+                                <i class="ti ti-new-section text-white me-1 fs-5"></i> Create Admin
+                            </a>
+                        </div>
                     </div>
                 </div>
+                @if(session('success'))
+                    <div class="alert alert-success">
+                        {{ session('success') }}
+                    </div>
+                @endif
+
+                @if(session('error'))
+                    <div class="alert alert-danger">
+                        {{ session('error') }}
+                    </div>
+                @endif
                 <div class="card-body">
                     <div class="row">
                         <div class="col-12">
@@ -87,7 +98,7 @@
                                                         <i class="ti ti-trash fs-5"></i>
                                                     </a>
 
-                                                    <form id="delete-form-{{ $row->id }}" action="{{ route('blog.delete', $row->id) }}" method="get" style="display: none;">
+                                                    <form id="delete-form-{{ $row->id }}" action="{{ route('user-delete', $row->id) }}" method="get" style="display: none;">
                                                         @csrf
                                                     </form>
 

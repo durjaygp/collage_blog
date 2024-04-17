@@ -20,6 +20,112 @@
                             <div class="postpage_entry">
                                 <div class="post_title">
                                     <h2>{{$blog->name}}</h2>
+                                    @php
+                                        $likes = \App\Models\BlogLike::where('user_id',auth()->user()->id)->where('blog_id',$blog->id)->first();
+                                        $likesCount = \App\Models\BlogLike::where('blog_id',$blog->id)->count();
+
+                                    @endphp
+
+                                    @if($likes)
+                                        <form action="{{route('like.remove')}}" method="post">
+                                            @csrf
+                                            <input type="hidden" name="blog_id" value="{{$blog->id}}">
+                                            <button class="button button-like liked">
+                                                <i class="fa fa-heart"></i>
+                                                <span>Liked ({{$likesCount}})</span>
+                                            </button>
+                                        </form>
+
+                                    @else
+                                        <form action="{{route('post-like.store')}}" method="post">
+                                            @csrf
+                                            <input type="hidden" name="blog_id" value="{{$blog->id}}">
+                                            <button class="button button-like">
+                                                <i class="fa fa-heart"></i>
+                                                <span>Like ({{$likesCount}})</span>
+                                            </button>
+                                        </form>
+                                    @endif
+
+
+
+
+
+                                    <style>
+                                        .button-like {
+                                            border: 2px solid #8a8a8a;
+                                            background-color: transparent;
+                                            text-decoration: none;
+                                            padding: 1rem;
+                                            position: relative;
+                                            vertical-align: middle;
+                                            text-align: center;
+                                            display: inline-block;
+                                            border-radius: 3rem;
+                                            color: #8a8a8a;
+                                            transition: all ease 0.4s;
+                                        }
+
+                                        .button-like span {
+                                            margin-left: 0.5rem;
+                                        }
+
+                                        .button-like .fa,
+                                        .button-like span {
+                                            transition: all ease 0.4s;
+                                        }
+
+                                        .button-like:focus {
+                                            background-color: transparent;
+                                        }
+
+                                        .button-like:focus .fa,
+                                        .button-like:focus span {
+                                            color: #8a8a8a;
+                                        }
+
+                                        .button-like:hover {
+                                            border-color: #cc4b37;
+                                            background-color: transparent;
+                                        }
+
+                                        .button-like:hover .fa,
+                                        .button-like:hover span {
+                                            color: #cc4b37;
+                                        }
+
+                                        .liked {
+                                            background-color: #cc4b37;
+                                            border-color: #cc4b37;
+                                        }
+
+                                        .liked .fa,
+                                        .liked span {
+                                            color: #fefefe;
+                                        }
+
+                                        .liked:focus {
+                                            background-color: #cc4b37;
+                                        }
+
+                                        .liked:focus .fa,
+                                        .liked:focus span {
+                                            color: #fefefe;
+                                        }
+
+                                        .liked:hover {
+                                            background-color: #cc4b37;
+                                            border-color: #cc4b37;
+                                        }
+
+                                        .liked:hover .fa,
+                                        .liked:hover span {
+                                            color: #fefefe;
+                                        }
+
+
+                                    </style>
+
                                 </div>
                                 <div class="meta">
                                     <ul class="post_meta">
@@ -35,10 +141,7 @@
                                     <p>
                                         {{ strip_tags($blog->main_content) }}
                                     </p>
-
-
                                 </div>
-
                                 <!-- // entry_tags -->
                                 <div class="post_sharing">
                                     <span>Share this post</span>

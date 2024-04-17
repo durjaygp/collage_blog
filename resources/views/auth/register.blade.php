@@ -107,14 +107,14 @@
                                     @php
                                         $types = \App\Models\UserType::whereStatus(1)->latest()->get();
                                     @endphp
-                                    <label for="exampleInputEmail1" class="form-label">User Type</label>
-                                    <select name="user_type_id" id="" class="form-control">
+                                    <label for="userType" class="form-label">User Type</label>
+                                    <select name="user_type_id" id="userType" class="form-control">
                                         @foreach($types as $row)
                                             <option value="{{$row->id}}">{{$row->title}}</option>
                                         @endforeach
                                     </select>
                                 </div>
-                                <div class="mb-3">
+                                <div class="mb-3" id="nicInput" style="display:none;">
                                     <label for="nic" class="form-label">NIC <small>(*If you are Alumni)</small></label>
                                     <input type="text" class="form-control" id="nic" name="nic" aria-describedby="textHelp" placeholder="Your full NIC">
                                 </div>
@@ -164,18 +164,8 @@
 <script src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.8/dist/iconify-icon.min.js"></script>
 
 <script src="{{asset('/')}}iziToast/dist/js/iziToast.min.js"></script>
-@if($errors->any())
-    @foreach($errors->all() as $error)
-        <script>
-            iziToast.error({
-                title: '',
-                position:'topRight',
-                message: '{{$error}}',
-            });
-        </script>
-    @endforeach
 
-@endif
+
 
 @if ($errors->any())
     <script>
@@ -188,6 +178,21 @@
         @endforeach
     </script>
 @endif
+
+
+<script>
+    $(document).ready(function() {
+        $('#userType').change(function(){
+            if($(this).val() == 2){
+                $('#nicInput').show();
+            } else {
+                $('#nicInput').hide();
+            }
+        });
+    });
+</script>
+
+
 </body>
 
 </html>
